@@ -86,6 +86,27 @@ export default function Navbar({ locale }: NavbarProps) {
 
         {/* Language Switcher and CTA */}
         <div className={styles.actions}>
+          <a
+            href={`https://wa.me/971547530333?text=${encodeURIComponent(
+              locale === "ar" || locale === "ur"
+                ? "مرحباً، أود تقديم طلب لشراء بعض المنتجات."
+                : "Hello, I would like to place an order."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ctaButton}
+          >
+            {locale === "ar"
+              ? "اطلب الآن"
+              : locale === "ur"
+                ? "ابھی آرڈر کریں"
+                : locale === "fr"
+                  ? "Commander"
+                  : locale === "es"
+                    ? "Ordenar Ahora"
+                    : "Order Now"}
+          </a>
+
           {/* Search Link */}
           <Link href={`/${locale}/search`} className={styles.searchLink} aria-label="Search">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

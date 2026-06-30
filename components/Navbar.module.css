@@ -67,18 +67,7 @@
 }
 
 .navOrderBtn {
-  background: var(--color-harvest-gold) !important;
-  color: var(--color-deep-forest) !important;
-  padding: 8px 16px !important;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 700;
-  border: none !important;
-}
-
-.navOrderBtn:hover {
-  background: #ffffff !important;
-  color: var(--color-deep-forest) !important;
+  display: none;
 }
 
 .ctaButton {
@@ -274,6 +263,10 @@
     gap: 16px;
   }
 
+  .ctaButton {
+    display: none; /* Hide header button on mobile/tablet viewports */
+  }
+
   .nav {
     position: absolute;
     top: 100%;
@@ -289,7 +282,7 @@
   }
 
   .navOpen {
-    max-height: 400px;
+    max-height: 500px; /* Increased to fit the Order button */
   }
 
   .navLink {
@@ -297,6 +290,23 @@
     border-bottom: 1px solid rgba(168, 197, 181, 0.1);
     width: 100%;
     text-align: right;
+  }
+
+  .navOrderBtn {
+    display: block !important;
+    background: var(--color-harvest-gold) !important;
+    color: var(--color-deep-forest) !important;
+    padding: 12px 16px !important;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 700;
+    margin: 16px 20px;
+    border: none !important;
+  }
+
+  .navOrderBtn:hover {
+    background: #ffffff !important;
+    color: var(--color-deep-forest) !important;
   }
 
   .burger {
