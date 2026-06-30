@@ -220,42 +220,46 @@
 
 .leaderCard {
   position: relative;
-  padding: 36px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px; /* Reduced padding for more compact cards */
   border: 1px solid rgba(201, 168, 76, 0.14);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  min-height: 250px;
+  min-height: 240px; /* Compact height */
 }
 
 .leaderIcon {
-  font-size: 44px;
-  margin-bottom: 22px;
+  font-size: 36px; /* Smaller icon */
+  margin-bottom: 12px; /* Reduced gap */
 }
 
 .leaderCard h3 {
-  margin: 0 0 12px;
-  font-size: 24px;
-  line-height: 1.5;
+  margin: 0 0 8px; /* Reduced gap */
+  font-size: 18px; /* Smaller title */
+  line-height: 1.4;
 }
 
 .leaderCard p {
-  margin: 0;
+  margin: 0 0 16px; /* Margin bottom to separate from tag */
   color: #c7b46e;
-  line-height: 1.8;
+  line-height: 1.6;
+  font-size: 13.5px;
+  flex: 1; /* Take up remaining space and push tag down */
 }
 
 .experienceTag {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
+  align-self: flex-end; /* Align right in LTR, left in RTL (away from text start) */
+  min-height: 32px; /* Smaller badge */
+  padding: 0 12px;
   border-radius: 999px;
   border: 1px solid rgba(201, 168, 76, 0.24);
   color: #d6bc67;
+  font-size: 12px;
+  background: rgba(201, 168, 76, 0.04);
 }
 
 .timeline {
