@@ -101,17 +101,19 @@ export default function AboutPage({ params }: Props) {
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroInner}>
-          <span className={styles.heroBadge}>{label(locale, "عن الشركة - منذ عام 1937", "About the company - Since 1937")}</span>
-          <h1 className={styles.heroTitle}>
-            {label(locale, "إرث تجاري يمتد منذ 1937 - قيادة عالمية في تجارة المواد الغذائية", "A trading legacy since 1937 - Global leadership in foodstuff trading")}
-          </h1>
-          <p className={styles.heroLead}>
-            {label(
-              locale,
-              "من دبي إلى العالم - شريكك الموثوق في تجارة المواد الغذائية بالجملة، نعمل بمعايير جودة عالية وشبكة توريد واسعة تخدم أعمالك بثقة واستمرارية.",
-              "From Dubai to the world, your trusted wholesale foodstuff partner with high standards and a dependable supply network."
-            )}
-          </p>
+          <div className={styles.heroTextGroup}>
+            <span className={styles.heroBadge}>{label(locale, "عن الشركة - منذ عام 1937", "About the company - Since 1937")}</span>
+            <h1 className={styles.heroTitle}>
+              {label(locale, "إرث تجاري يمتد منذ 1937 - قيادة عالمية في تجارة المواد الغذائية", "A trading legacy since 1937 - Global leadership in foodstuff trading")}
+            </h1>
+            <p className={styles.heroLead}>
+              {label(
+                locale,
+                "من دبي إلى العالم - شريكك الموثوق في تجارة المواد الغذائية بالجملة، نعمل بمعايير جودة عالية وشبكة توريد واسعة تخدم أعمالك بثقة واستمرارية.",
+                "From Dubai to the world, your trusted wholesale foodstuff partner with high standards and a dependable supply network."
+              )}
+            </p>
+          </div>
 
           <div className={styles.statsGrid}>
             {stats.map(([value, arLabel, enLabel]) => (
