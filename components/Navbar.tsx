@@ -51,16 +51,19 @@ export default function Navbar({ locale }: NavbarProps) {
         </Link>
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ""}`}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.navLink}
-              onClick={() => setOpen(false)}
-            >
-          {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <a
             href={`https://wa.me/971547530333?text=${encodeURIComponent(
               locale === "ar" || locale === "ur"

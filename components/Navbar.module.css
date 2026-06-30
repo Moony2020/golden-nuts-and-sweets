@@ -67,6 +67,11 @@
   border-bottom-color: var(--color-harvest-gold);
 }
 
+.activeNavLink {
+  color: var(--color-harvest-gold) !important;
+  border-bottom-color: var(--color-harvest-gold) !important;
+}
+
 .navOrderBtn {
   display: none;
 }
