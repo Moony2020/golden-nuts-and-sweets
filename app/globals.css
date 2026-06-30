@@ -9,8 +9,8 @@
   --color-on-surface: #1d1c13;
   --color-on-surface-variant: #424843;
 
-  --font-display: var(--font-outfit), var(--font-cairo), system-ui, sans-serif;
-  --font-body: var(--font-dm-sans), var(--font-cairo), system-ui, sans-serif;
+  --font-display: var(--font-cairo), system-ui, sans-serif;
+  --font-body: var(--font-cairo), system-ui, sans-serif;
 
   --spacing-unit: 4px;
   --spacing-2: 8px;
