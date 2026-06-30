@@ -476,13 +476,13 @@
 
 @media (max-width: 820px) {
   .hero {
-    min-height: auto;
+    min-height: unset;
   }
 
   .heroInner {
     padding: 64px 16px 20px; /* Reduced bottom padding to push cards to the edge */
     display: block; /* Revert to block layout on mobile */
-    min-height: auto;
+    min-height: unset;
   }
 
   .pillarsGrid,

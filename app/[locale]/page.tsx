@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SUPPORTED_LANGUAGES, COMPANY } from "@/lib/config";
@@ -55,6 +58,45 @@ export default function HomePage({ params }: Props) {
     notFound();
   }
 
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax Scroll Effect on Hero Background
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Intersection Observer scroll reveals
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealed);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [locale]);
+
   const t = getTranslation(locale);
   const heroLocale: Language = locale === "ar" ? "ar" : "en";
   const heroTranslation = getTranslation(heroLocale);
@@ -88,6 +130,10 @@ export default function HomePage({ params }: Props) {
           fallback={IMG.nuts.fallback}
           alt="Premium nuts selection"
           className={styles.heroBackground}
+          style={{
+            transform: `scale(1.08) translateY(${scrollY * 0.18}px)`,
+            transition: "transform 0.1s ease-out"
+          }}
         />
         <div className={styles.heroOverlay} />
         <div className={styles.heroTexture} />
@@ -175,7 +221,10 @@ export default function HomePage({ params }: Props) {
       <div className={styles.features}>
         <div className={styles.featuresInner}>
           {features.map((f, i) => (
-            <div key={i} className={styles.feature}>
+            <div
+              key={i}
+              className={`${styles.feature} ${styles.reveal} ${styles.revealUp} ${styles["stagger" + ((i % 5) + 1)]}`}
+            >
               <div className={styles.featureIcon}>{f.icon}</div>
               <span className={styles.featureText}>{f.text}</span>
             </div>
@@ -184,7 +233,7 @@ export default function HomePage({ params }: Props) {
       </div>
 
       <section className={styles.categoriesSection}>
-        <div className={styles.sectionHeader}>
+        <div className={`${styles.sectionHeader} ${styles.reveal} ${styles.revealUp}`}>
           <div>
             <span className={styles.sectionEyebrow}>
               {label(locale, "تشكيلتنا", "Our Selection")}
@@ -198,8 +247,11 @@ export default function HomePage({ params }: Props) {
         </div>
 
         <div className={styles.categoriesGrid}>
-          {FEATURED_CATEGORIES.map((cat) => (
-            <div key={cat.slug} className={styles.categoryCard}>
+          {FEATURED_CATEGORIES.map((cat, index) => (
+            <div
+              key={cat.slug}
+              className={`${styles.categoryCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 3) + 1)]}`}
+            >
               <div className={styles.categoryImageContainer}>
                 <SmartImage
                   src={cat.img}
@@ -234,7 +286,7 @@ export default function HomePage({ params }: Props) {
         productsLabel={t.stats.products}
       />
 
-      <section className={styles.ctaBanner}>
+      <section className={`${styles.ctaBanner} ${styles.reveal} ${styles.revealScale}`}>
         <h2 className={styles.ctaBannerTitle}>
           {label(
             locale,

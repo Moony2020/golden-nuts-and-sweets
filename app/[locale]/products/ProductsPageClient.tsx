@@ -309,6 +309,27 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
   const t = getTranslation(locale);
   const categoryFromQuery = searchParams?.get("category") || "";
 
+  // Intersection Observer scroll reveals
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealed);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [locale, filteredProducts, loading]);
+
   useEffect(() => {
     setSelectedCategory(categoryFromQuery);
   }, [categoryFromQuery]);
@@ -365,7 +386,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
 
 
       <section className={styles.showcaseSection}>
-        <div className={styles.sectionHeading}>
+        <div className={`${styles.sectionHeading} ${styles.reveal} ${styles.revealUp}`}>
           <div>
             <span className={styles.eyebrow}>{text(locale, "الأقسام الرئيسية", "Main Categories", "Catégories Principales", "اہم اقسام", "Categorías Principales")}</span>
             <h2 className={styles.sectionTitle}>{text(locale, "استعرض مجموعات المنتجات", "Browse Product Collections", "Parcourir les Collections", "مصنوعات کے مجموعے براؤز کریں", "Explorar Colecciones de Productos")}</h2>
@@ -373,7 +394,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
         </div>
 
         <div className={styles.categoryGrid}>
-          {SHOWCASE_CARDS.map((card) => {
+          {SHOWCASE_CARDS.map((card, index) => {
             const liveCount = products.filter((product) => product.category === card.filterSlug).length;
             const count = liveCount || card.count;
 
@@ -381,7 +402,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
               <button
                 key={card.id}
                 type="button"
-                className={`${styles.categoryCard} ${selectedCategory === card.filterSlug ? styles.categoryCardActive : ""}`}
+                className={`${styles.categoryCard} ${selectedCategory === card.filterSlug ? styles.categoryCardActive : ""} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 4) + 1)]}`}
                 onClick={() => selectCategory(card.filterSlug)}
               >
                 <div className={styles.categoryImageWrap}>
@@ -412,7 +433,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
       </section>
 
       <section id="product-results" className={styles.resultsSection}>
-        <div className={styles.resultsHeader}>
+        <div className={`${styles.resultsHeader} ${styles.reveal} ${styles.revealUp}`}>
           <div>
             <span className={styles.eyebrow}>{text(locale, "نتائج الكتالوج", "Catalog Results", "Résultats du Catalogue", "کیٹلاگ کے نتائج", "Resultados del Catálogo")}</span>
             <h2 className={styles.resultsTitle}>
@@ -473,11 +494,14 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
           <div className={styles.loadingState}>{text(locale, "جاري تحميل المنتجات...", "Loading products...", "Chargement des produits...", "مصنوعات لوڈ ہو رہی ہیں...", "Cargando productos...")}</div>
         ) : filteredProducts.length > 0 ? (
           <div className={styles.productGrid}>
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product, index) => {
               const localProd = getLocalizedProduct(product, locale);
               return (
-                <article key={product._id.toString()} className={styles.productCard}>
-                  <div className={styles.productImageWrap}>
+                <article
+                  key={product._id.toString()}
+                  className={`${styles.productCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 4) + 1)]}`}
+                >
+                  <div className={styles.productImageContainer}>
                     <SmartImage
                       src={product.image || CATEGORY_VISUALS[product.category]?.src || CATEGORY_VISUALS.nuts.src}
                       fallback={CATEGORY_VISUALS[product.category]?.fallback || CATEGORY_VISUALS.nuts.fallback}
@@ -521,7 +545,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
         )}
       </section>
 
-      <section className={styles.ctaBand}>
+      <section className={`${styles.ctaBand} ${styles.reveal} ${styles.revealScale}`}>
         <h2 className={styles.ctaBandTitle}>{text(locale, "هل تبحث عن منتج معين؟", "Looking for a specific product?", "Vous recherchez un produit spécifique ?", "کیا آپ کسی خاص پروڈکٹ کو تلاش کر رہے ہیں؟", "¿Busca un producto específico?")}</h2>
         <p className={styles.ctaBandText}>
           {text(
