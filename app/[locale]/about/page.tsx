@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SUPPORTED_LANGUAGES, COMPANY } from "@/lib/config";
@@ -30,23 +30,46 @@ export default function AboutPage({ params }: Props) {
   const locale = params.locale as Language;
   if (!Object.keys(SUPPORTED_LANGUAGES).includes(locale)) notFound();
 
+  const [scrollY, setScrollY] = useState(0);
+
+  // Cinematic Parallax Scrolling Effect
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll Reveal Animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add(styles.itemVisible);
+            entry.target.classList.add(styles.revealed);
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
-    const items = document.querySelectorAll(`.${styles.timelineItem}`);
-    items.forEach((item) => observer.observe(item));
+    const timelineItems = document.querySelectorAll(`.${styles.timelineItem}`);
+    timelineItems.forEach((item) => observer.observe(item));
+
+    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
+    revealElements.forEach((el) => observer.observe(el));
 
     return () => {
-      items.forEach((item) => observer.unobserve(item));
+      timelineItems.forEach((item) => observer.unobserve(item));
+      revealElements.forEach((el) => observer.unobserve(el));
     };
   }, [locale]);
 
@@ -240,6 +263,10 @@ export default function AboutPage({ params }: Props) {
           fallback={IMG.about.fallback}
           alt="Company building and Dubai skyline"
           className={styles.heroBackground}
+          style={{
+            transform: `scale(1.08) translateY(${scrollY * 0.18}px)`,
+            transition: "transform 0.1s ease-out"
+          }}
         />
         <div className={styles.heroOverlay} />
 
@@ -277,7 +304,10 @@ export default function AboutPage({ params }: Props) {
 
         <div className={styles.pillarsGrid}>
           {pillars.map(([arTitle, enTitle, arDesc, enDesc], index) => (
-            <div key={index} className={styles.pillarCard}>
+            <div
+              key={index}
+              className={`${styles.pillarCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 4) + 1)]}`}
+            >
               <h3>{label(locale, arTitle, enTitle)}</h3>
               <p>{label(locale, arDesc, enDesc)}</p>
             </div>
@@ -293,7 +323,10 @@ export default function AboutPage({ params }: Props) {
 
         <div className={styles.leadershipGrid}>
           {leaders.map(([icon, arTitle, enTitle, arSub, enSub, arExp, enExp], index) => (
-            <article key={index} className={styles.leaderCard}>
+            <article
+              key={index}
+              className={`${styles.leaderCard} ${styles.reveal} ${styles.revealUp} ${styles["stagger" + ((index % 5) + 1)]}`}
+            >
               <div className={styles.leaderIcon}>{icon}</div>
               <h3>{label(locale, arTitle, enTitle)}</h3>
               <p>{label(locale, arSub, enSub)}</p>
@@ -329,7 +362,10 @@ export default function AboutPage({ params }: Props) {
 
         <div className={styles.standardsGrid}>
           {standards.map(([icon, arTitle, enTitle, arDesc, enDesc], index) => (
-            <div key={index} className={styles.standardCard}>
+            <div
+              key={index}
+              className={`${styles.standardCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 5) + 1)]}`}
+            >
               <div className={styles.standardIcon}>{icon}</div>
               <h3>{label(locale, arTitle, enTitle)}</h3>
               <p>{label(locale, arDesc, enDesc)}</p>
@@ -353,7 +389,10 @@ export default function AboutPage({ params }: Props) {
 
         <div className={styles.operationsGrid}>
           {operations.map(([src, fallback, arTitle, enTitle, arDesc, enDesc], index) => (
-            <article key={index} className={styles.operationCard}>
+            <article
+              key={index}
+              className={`${styles.operationCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 3) + 1)]}`}
+            >
               <SmartImage src={src} fallback={fallback} alt={label(locale, arTitle, enTitle)} className={styles.operationImage} />
               <div className={styles.operationOverlay}>
                 <h3>{label(locale, arTitle, enTitle)}</h3>

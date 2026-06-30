@@ -551,3 +551,40 @@
     font-size: 11px;
   }
 }
+
+/* Cinematic Scroll Reveal System */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.revealUp {
+  transform: translateY(50px);
+}
+
+.revealScale {
+  transform: scale(0.93) translateY(20px);
+}
+
+/* Staggered delays for items in grid */
+.stagger1 { transition-delay: 0.05s; }
+.stagger2 { transition-delay: 0.15s; }
+.stagger3 { transition-delay: 0.25s; }
+.stagger4 { transition-delay: 0.35s; }
+.stagger5 { transition-delay: 0.45s; }
+
+/* When element intersects, reveal it */
+.revealed {
+  opacity: 1 !important;
+  transform: translate(0) scale(1) !important;
+}
+
+/* Mobile responsive resets for animation */
+@media (max-width: 820px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

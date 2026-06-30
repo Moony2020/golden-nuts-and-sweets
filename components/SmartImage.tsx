@@ -7,6 +7,7 @@ interface SmartImageProps {
   fallback: string;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 /**
@@ -14,7 +15,7 @@ interface SmartImageProps {
  * only if the remote one fails to load — so visuals are never broken,
  * even offline.
  */
-export default function SmartImage({ src, fallback, alt, className }: SmartImageProps) {
+export default function SmartImage({ src, fallback, alt, className, style }: SmartImageProps) {
   const [current, setCurrent] = useState(src);
 
   return (
@@ -22,6 +23,7 @@ export default function SmartImage({ src, fallback, alt, className }: SmartImage
       src={current}
       alt={alt}
       className={className}
+      style={style}
       loading="lazy"
       onError={() => {
         if (current !== fallback) setCurrent(fallback);
