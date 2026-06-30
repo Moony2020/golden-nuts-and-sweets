@@ -330,6 +330,9 @@
   box-shadow: 0 8px 24px rgba(13, 43, 26, 0.06);
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .productCard:hover {
@@ -376,6 +379,9 @@
 
 .productBody {
   padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .productName {
@@ -387,9 +393,9 @@
 .productDescription {
   color: #536255;
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0 0 16px;
-  min-height: 82px;
+  min-height: unset; /* Removed fixed height to make card compact */
 }
 
 .productMeta {
@@ -399,6 +405,7 @@
   gap: 12px;
   padding-top: 14px;
   border-top: 1px solid rgba(18, 49, 28, 0.1);
+  margin-top: auto; /* Push metadata to the bottom of the card */
 }
 
 .productPackaging {
