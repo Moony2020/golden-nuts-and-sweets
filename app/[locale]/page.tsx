@@ -5,6 +5,7 @@ import { getTranslation } from "@/lib/i18n";
 import type { Language } from "@/lib/config";
 import SmartImage from "@/components/SmartImage";
 import { IMG } from "@/lib/images";
+import AnimatedStats from "@/components/AnimatedStats";
 import styles from "./home.module.css";
 
 const CATEGORY_FALLBACK: Record<string, string> = {
@@ -227,25 +228,11 @@ export default function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className={styles.statsSection}>
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>👥</div>
-            <div className={styles.statNumber}>10K+</div>
-            <div className={styles.statLabel}>{t.stats.customers}</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>⭐</div>
-            <div className={styles.statNumber}>88</div>
-            <div className={styles.statLabel}>{t.stats.experience}</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>📦</div>
-            <div className={styles.statNumber}>1K+</div>
-            <div className={styles.statLabel}>{t.stats.products}</div>
-          </div>
-        </div>
-      </section>
+      <AnimatedStats
+        customersLabel={t.stats.customers}
+        experienceLabel={t.stats.experience}
+        productsLabel={t.stats.products}
+      />
 
       <section className={styles.ctaBanner}>
         <h2 className={styles.ctaBannerTitle}>
