@@ -305,23 +305,67 @@
 
 @media (max-width: 640px) {
   .header {
-    padding: 0 12px;
+    padding: 0 10px;
   }
 
   .inner {
-    gap: 12px;
+    gap: 6px;
+    height: 56px;
   }
 
   .logoText {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .logoImg {
+    height: 38px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .languageBtn {
+    padding: 5px 8px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .ctaButton {
+    padding: 5px 10px;
+    font-size: 12px;
   }
 
   .nav {
     position: fixed;
-    top: 60px;
+    top: 56px;
     left: 0;
     right: 0;
     z-index: 40;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    display: none; /* Hide company name text on tiny screens, logo image is enough */
+  }
+
+  .langLabel {
+    display: none; /* Hide full language name on mobile to save space */
+  }
+  
+  .languageBtn {
+    padding: 5px 6px;
+  }
+
+  .ctaButton {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+  
+  .searchLink {
+    width: 32px;
+    height: 32px;
   }
 }
 

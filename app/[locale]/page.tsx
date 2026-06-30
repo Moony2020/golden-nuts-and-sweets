@@ -94,27 +94,43 @@ export default function HomePage({ params }: Props) {
           <div className={`${styles.heroContent} ${compactHeroText ? styles.heroContentCompact : ""} ${styles.animateUp}`}>
             <div className={styles.heroMeta}>
               <span className={styles.heroMetaLabel}>
-                {label(heroLocale, "دبي، الإمارات العربية المتحدة", "Dubai, United Arab Emirates")}
+                {label(locale, "دبي، الإمارات العربية المتحدة", "Dubai, United Arab Emirates", {
+                  ur: "دبئی، متحدہ عرب امارات",
+                  fr: "Dubaï, Émirats Arabes Unis",
+                  es: "Dubái, Emiratos Árabes Unidos"
+                })}
               </span>
               <span className={styles.heroMetaDivider} />
               <span className={styles.heroMetaText}>
-                {heroLocale === "ar" ? COMPANY.nameAr : COMPANY.nameEn}
+                {locale === "ar" ? COMPANY.nameAr : COMPANY.nameEn}
               </span>
             </div>
 
             <span className={styles.heroBadge}>
-              ✦ {label(heroLocale, "جودة عالمية موثوقة", "Trusted Global Quality")}
+              ✦ {label(locale, "جودة عالمية موثوقة", "Trusted Global Quality", {
+                ur: "قابل اعتماد عالمی معیار",
+                fr: "Qualité globale de confiance",
+                es: "Calidad global de confianza"
+              })}
             </span>
 
-            <h1 className={`${styles.heroHeadline} ${compactHeroText ? styles.heroHeadlineCompact : ""} ${englishHeroText ? styles.heroHeadlineEnglish : ""}`}>
-              {label(heroLocale, "شريكك الموثوق", "Your trusted")}{" "}
+            <h1 className={`${styles.heroHeadline} ${compactHeroText ? styles.heroHeadlineCompact : ""} ${locale === "en" ? styles.heroHeadlineEnglish : ""}`}>
+              {label(locale, "شريكك الموثوق", "Your trusted", {
+                ur: "تھوک فروشی میں آپ کا",
+                fr: "Votre partenaire de confiance",
+                es: "Su socio de confianza"
+              })}{" "}
               <span className={styles.heroHighlight}>
-                {label(heroLocale, "في تجارة المواد الغذائية بالجملة", "wholesale partner")}
+                {label(locale, "في تجارة المواد الغذائية بالجملة", "wholesale partner", {
+                  ur: "قابل اعتماد شریک کار",
+                  fr: "en commerce de gros",
+                  es: "en comercio mayorista"
+                })}
               </span>
             </h1>
 
             <p className={`${styles.heroSubheadline} ${compactHeroText ? styles.heroSubheadlineCompact : ""}`}>
-              {heroTranslation.hero.subheadline}
+              {t.hero.subheadline}
             </p>
 
             <div className={styles.heroCtas}>

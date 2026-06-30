@@ -21,8 +21,15 @@ function ProductsPageFallback({ locale }: { locale: Language }) {
         <h1 className={styles.title}>{t.products.title}</h1>
         <p className={styles.subtitle}>{t.products.search}</p>
       </div>
-      <div style={{ textAlign: "center", padding: "48px 0" }}>
-        {locale === "ar" || locale === "ur" ? "جاري التحميل..." : "Loading..."}
+      <div className={styles.skeletonGrid}>
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className={styles.skeletonCard}>
+            <div className={styles.skeletonImage} />
+            <div className={styles.skeletonTitle} />
+            <div className={styles.skeletonSub} />
+            <div className={styles.skeletonText} />
+          </div>
+        ))}
       </div>
     </div>
   );
