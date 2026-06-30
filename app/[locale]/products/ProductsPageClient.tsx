@@ -496,10 +496,11 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
           <div className={styles.productGrid}>
             {filteredProducts.map((product, index) => {
               const localProd = getLocalizedProduct(product, locale);
+              const isEven = index % 2 === 0;
               return (
                 <article
                   key={product._id.toString()}
-                  className={`${styles.productCard} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 4) + 1)]}`}
+                  className={`${styles.productCard} ${styles.reveal} ${isEven ? styles.revealLeft : styles.revealRight} ${styles["stagger" + ((index % 4) + 1)]}`}
                 >
                   <div className={styles.productImageContainer}>
                     <SmartImage
