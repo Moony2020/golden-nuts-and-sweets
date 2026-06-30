@@ -10,7 +10,7 @@ interface WhatsAppButtonProps {
 }
 
 export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [typedMessage, setTypedMessage] = useState("");
   const [mounted, setMounted] = useState(false);
 
@@ -145,13 +145,7 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
   };
 
   const handleFabClick = () => {
-    if (open) {
-      // If already open, click leads to a direct default contact
-      const url = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(defaultWhatsappMessage)}`;
-      window.open(url, "_blank", "noopener,noreferrer");
-    } else {
-      setOpen(true);
-    }
+    setOpen(true);
   };
 
   if (!mounted) return null;
@@ -251,19 +245,20 @@ export default function WhatsAppButton({ locale }: WhatsAppButtonProps) {
 
       {/* Floating Buttons layout */}
       <div className={styles.buttonGroup}>
-        <button
-          type="button"
-          className={styles.fab}
-          onClick={handleFabClick}
-          aria-label="Open WhatsApp Chat"
-        >
-          <svg viewBox="0 0 24 24" className={styles.icon}>
-            <path d="M19.11 4.91A9.82 9.82 0 0 0 12.03 2C6.55 2 2.08 6.46 2.08 11.94c0 1.76.46 3.47 1.33 4.98L2 22l5.19-1.36a9.91 9.91 0 0 0 4.84 1.23h.01c5.48 0 9.94-4.46 9.94-9.94a9.86 9.86 0 0 0-2.88-7.02Zm-7.08 15.27h-.01a8.12 8.12 0 0 1-4.15-1.13l-.3-.18-3.08.81.82-3-.2-.31a8.12 8.12 0 0 1-1.25-4.34c0-4.49 3.65-8.14 8.14-8.14 2.17 0 4.21.84 5.75 2.38a8.08 8.08 0 0 1 2.38 5.76c0 4.49-3.65 8.14-8.14 8.14Zm4.46-6.08c-.24-.12-1.41-.7-1.63-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.42-1.35-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.79-.2-.48-.4-.41-.54-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.52.1.46-.07 1.41-.58 1.61-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
-          </svg>
-          <span className={styles.badge}>1</span>
-        </button>
+        {!open && (
+          <button
+            type="button"
+            className={styles.fab}
+            onClick={handleFabClick}
+            aria-label="Open WhatsApp Chat"
+          >
+            <svg viewBox="0 0 24 24" className={styles.icon}>
+              <path d="M19.11 4.91A9.82 9.82 0 0 0 12.03 2C6.55 2 2.08 6.46 2.08 11.94c0 1.76.46 3.47 1.33 4.98L2 22l5.19-1.36a9.91 9.91 0 0 0 4.84 1.23h.01c5.48 0 9.94-4.46 9.94-9.94a9.86 9.86 0 0 0-2.88-7.02Zm-7.08 15.27h-.01a8.12 8.12 0 0 1-4.15-1.13l-.3-.18-3.08.81.82-3-.2-.31a8.12 8.12 0 0 1-1.25-4.34c0-4.49 3.65-8.14 8.14-8.14 2.17 0 4.21.84 5.75 2.38a8.08 8.08 0 0 1 2.38 5.76c0 4.49-3.65 8.14-8.14 8.14Zm4.46-6.08c-.24-.12-1.41-.7-1.63-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.42-1.35-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.79-.2-.48-.4-.41-.54-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.33.98 2.49c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.52.1.46-.07 1.41-.58 1.61-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+            </svg>
+          </button>
+        )}
 
-        {open && (
+        {false && (
           <button
             type="button"
             className={styles.closeFab}

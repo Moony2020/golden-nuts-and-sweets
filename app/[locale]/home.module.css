@@ -269,20 +269,69 @@
 .features {
   position: relative;
   z-index: 5;
-  margin: -50px auto 0;
-  max-width: 1180px;
-  padding: 0 32px;
+  width: 100%;
+  background: #0d2b1a; /* Dark green background */
+  border-top: 1px solid rgba(201, 168, 76, 0.18);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .featuresInner {
-  background: linear-gradient(135deg, #14422a 0%, #0d2b1a 100%);
-  border: 1px solid rgba(201, 168, 76, 0.18);
-  border-radius: 24px;
-  padding: 32px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Duplicates are hidden on desktop */
+.duplicateFeature {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .featuresInner {
+    width: max-content;
+    max-width: none;
+    margin: 0;
+    justify-content: flex-start;
+    gap: 0;
+    animation: scrollFeatures 25s linear infinite;
+  }
+  
+  .featuresInner:hover {
+    animation-play-state: paused;
+  }
+  
+  .featuresInner .feature {
+    min-width: 24vw;
+    flex: none;
+    padding: 6px 8px;
+  }
+  
+  .duplicateFeature {
+    display: flex !important;
+  }
+}
+
+.featuresInner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollFeatures {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+[dir="rtl"] .featuresInner {
+  animation-name: scrollFeaturesRTL;
+}
+
+@keyframes scrollFeaturesRTL {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
 }
 
 .feature {
@@ -290,21 +339,22 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 8px;
-  padding: 12px 16px;
+  gap: 4px;
+  padding: 6px 20px;
   transition: background 0.3s ease, transform 0.3s ease;
   position: relative;
+  flex: 1;
 }
 
 .feature:hover {
   background: rgba(201, 168, 76, 0.06);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .featureValue {
   display: block;
   font-family: var(--font-cairo), system-ui, sans-serif;
-  font-size: 28px;
+  font-size: clamp(16px, 2vw, 22px);
   font-weight: 800;
   color: var(--color-harvest-gold);
 }
@@ -312,19 +362,19 @@
 .featureLabel {
   display: block;
   font-family: var(--font-cairo), system-ui, sans-serif;
-  font-size: 13.5px;
+  font-size: clamp(10px, 1.2vw, 12px);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
-@media (min-width: 969px) {
+@media (min-width: 769px) {
   .feature:not(:last-child)::after {
     content: "";
     position: absolute;
     top: 20%;
     bottom: 20%;
-    inset-inline-end: -10px;
+    inset-inline-end: -20px;
     width: 1px;
     background: rgba(201, 168, 76, 0.18);
   }
@@ -674,8 +724,7 @@
   }
 
   .featuresInner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 8px;
   }
 }
 
@@ -708,15 +757,9 @@
     height: 48px;
   }
 
-  .features {
-    margin-top: -30px;
-    padding: 0 18px;
-  }
-
   .featuresInner {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 24px 16px;
-    border-radius: 18px;
+    padding: 4px 8px;
+    gap: 4px;
   }
 
   .categoriesSection {
@@ -904,18 +947,25 @@
 @media (max-width: 968px) {
   .partnersGrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .partnersGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 400px) {
   .partnersSection {
     padding: 70px 18px 60px;
   }
   .partnersGrid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
@@ -1119,7 +1169,12 @@
   line-height: 1;
   color: rgba(201, 168, 76, 0.08);
   font-family: serif;
+  -webkit-user-select: none;
   user-select: none;
+}
+
+.mt12 {
+  margin-top: 12px;
 }
 
 .topBadge {
@@ -1291,25 +1346,9 @@
 /* Scrolling horizontal track of countries */
 .countriesTrackWrapper {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
   padding: 16px 4px 28px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-harvest-gold) rgba(255, 255, 255, 0.05);
   margin-bottom: 48px;
-}
-
-.countriesTrackWrapper::-webkit-scrollbar {
-  height: 6px;
-}
-
-.countriesTrackWrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 999px;
-}
-
-.countriesTrackWrapper::-webkit-scrollbar-thumb {
-  background: rgba(201, 168, 76, 0.35);
-  border-radius: 999px;
 }
 
 .countriesTrack {
@@ -1317,6 +1356,13 @@
   gap: 20px;
   width: max-content;
   padding-inline-start: 12px;
+  animation: countriesLoop 38s linear infinite;
+  will-change: transform;
+  direction: ltr;
+}
+
+.countriesTrackWrapper:hover .countriesTrack {
+  animation-play-state: paused;
 }
 
 .countryCard {
@@ -1369,6 +1415,15 @@
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.5;
   margin: 0;
+}
+
+@keyframes countriesLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Sourcing Stats Row */
@@ -1426,6 +1481,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
+
+  .countriesTrack {
+    animation-duration: 28s;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1452,6 +1511,16 @@
   .countriesStatsRow {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .countriesTrack {
+    animation-duration: 24s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countriesTrack {
+    animation: none;
   }
 }
 
@@ -1702,13 +1771,14 @@
   display: flex;
   width: max-content;
   animation: scrollMarquee 35s linear infinite;
+  direction: ltr;
 }
 
 .marqueeContent {
   display: flex;
   align-items: center;
-  gap: 48px;
-  padding-right: 48px;
+  gap: 120px;
+  padding-right: 120px;
 }
 
 .marqueeContent span {
@@ -1725,6 +1795,15 @@
   }
   100% {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes scrollMarqueeRTL {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(50%, 0, 0);
   }
 }
 
@@ -1753,4 +1832,3 @@
     gap: 16px;
   }
 }
-

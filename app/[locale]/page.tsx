@@ -732,10 +732,19 @@ export default function HomePage({ params }: Props) {
       <div className={styles.features}>
         <div className={styles.featuresInner}>
           {stats.map((s, i) => (
-            <div
-              key={i}
-              className={`${styles.feature} ${styles.reveal} ${styles.revealUp} ${styles["stagger" + ((i % 4) + 1)]}`}
-            >
+            <div key={`orig-${i}`} className={styles.feature}>
+              <strong className={styles.featureValue}>{s.value}</strong>
+              <span className={styles.featureLabel}>{s.desc}</span>
+            </div>
+          ))}
+          {stats.map((s, i) => (
+            <div key={`dup1-${i}`} className={`${styles.feature} ${styles.duplicateFeature}`}>
+              <strong className={styles.featureValue}>{s.value}</strong>
+              <span className={styles.featureLabel}>{s.desc}</span>
+            </div>
+          ))}
+          {stats.map((s, i) => (
+            <div key={`dup2-${i}`} className={`${styles.feature} ${styles.duplicateFeature}`}>
               <strong className={styles.featureValue}>{s.value}</strong>
               <span className={styles.featureLabel}>{s.desc}</span>
             </div>

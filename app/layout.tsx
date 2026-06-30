@@ -1,35 +1,8 @@
 import type { Metadata } from "next";
-import { Outfit, DM_Sans, Cairo, Playfair_Display } from "next/font/google";
+// Removed Google Fonts to fix build timeout
+
 import { COMPANY } from "@/lib/config";
 import "./globals.css";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const cairo = Cairo({
-  subsets: ["arabic"],
-  variable: "--font-cairo",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata: Metadata = {
   title: `${COMPANY.nameEn} | Premium Foodstuff Trading`,
@@ -46,7 +19,6 @@ export default function RootLayout({
     <html
       lang="ar"
       suppressHydrationWarning
-      className={`${outfit.variable} ${playfair.variable} ${dmSans.variable} ${cairo.variable}`}
     >
       <body>{children}</body>
     </html>
