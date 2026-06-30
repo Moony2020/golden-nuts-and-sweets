@@ -123,14 +123,23 @@ export default function Navbar({ locale }: NavbarProps) {
               className={styles.languageBtn}
               aria-label="Select language"
             >
+              {/* Globe Icon */}
+              <svg className={styles.globeIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              
+              <span className={styles.langLabel}>{SUPPORTED_LANGUAGES[locale].name}</span>
+              <span className={styles.countryCode}>
+                {locale === "en" ? "GB" : locale === "ar" ? "AE" : locale === "ur" ? "PK" : locale.toUpperCase()}
+              </span>
+
+              {/* Dropdown Arrow */}
               <span className={`${styles.dropdownArrow} ${langOpen ? styles.dropdownArrowOpen : ""}`} aria-hidden="true">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                 </svg>
-              </span>
-              <span className={styles.langLabel}>{SUPPORTED_LANGUAGES[locale].name}</span>
-              <span className={styles.countryCode}>
-                {locale === "en" ? "GB" : locale === "ar" ? "AE" : locale === "ur" ? "PK" : locale.toUpperCase()}
               </span>
             </button>
 

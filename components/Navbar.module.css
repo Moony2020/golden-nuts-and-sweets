@@ -48,6 +48,7 @@
   align-items: center;
   gap: 32px;
   flex: 1;
+  margin-inline-start: 48px; /* Push navbar links further away from the logo brand */
 }
 
 .navLink {
@@ -128,10 +129,17 @@
   font-family: inherit;
 }
 
+.globeIcon {
+  flex-shrink: 0;
+  opacity: 0.85;
+  color: var(--color-muted-sage);
+}
+
 .countryCode {
   font-size: 11px;
-  opacity: 0.6;
+  opacity: 0.8;
   font-weight: 700;
+  display: none; /* Hide on desktop */
 }
 
 .dropdownArrow {
@@ -285,6 +293,7 @@
     overflow: hidden;
     transition: max-height 0.3s ease;
     border-bottom: 1px solid rgba(168, 197, 181, 0.2);
+    margin-inline-start: 0; /* Reset margins on mobile drawer */
   }
 
   .navOpen {
@@ -367,6 +376,10 @@
 
   .langLabel {
     display: none; /* Hide full language name on mobile/tablet to save space */
+  }
+
+  .countryCode {
+    display: inline-block !important; /* Show country code on mobile */
   }
 
   .ctaButton {
