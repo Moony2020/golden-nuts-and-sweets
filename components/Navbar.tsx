@@ -61,10 +61,6 @@ export default function Navbar({ locale }: NavbarProps) {
           {link.label}
             </Link>
           ))}
-        </nav>
-
-        {/* Language Switcher and CTA */}
-        <div className={styles.actions}>
           <a
             href={`https://wa.me/971547530333?text=${encodeURIComponent(
               locale === "ar" || locale === "ur"
@@ -73,7 +69,8 @@ export default function Navbar({ locale }: NavbarProps) {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.ctaButton}
+            className={`${styles.navLink} ${styles.navOrderBtn}`}
+            onClick={() => setOpen(false)}
           >
             {locale === "ar"
               ? "اطلب الآن"
@@ -85,7 +82,10 @@ export default function Navbar({ locale }: NavbarProps) {
                     ? "Ordenar Ahora"
                     : "Order Now"}
           </a>
+        </nav>
 
+        {/* Language Switcher and CTA */}
+        <div className={styles.actions}>
           {/* Search Link */}
           <Link href={`/${locale}/search`} className={styles.searchLink} aria-label="Search">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

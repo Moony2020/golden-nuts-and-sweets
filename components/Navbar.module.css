@@ -66,6 +66,21 @@
   border-bottom-color: var(--color-harvest-gold);
 }
 
+.navOrderBtn {
+  background: var(--color-harvest-gold) !important;
+  color: var(--color-deep-forest) !important;
+  padding: 8px 16px !important;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+  border: none !important;
+}
+
+.navOrderBtn:hover {
+  background: #ffffff !important;
+  color: var(--color-deep-forest) !important;
+}
+
 .ctaButton {
   font-family: var(--font-display);
   background: var(--color-harvest-gold);
@@ -349,8 +364,8 @@
 }
 
 @media (max-width: 480px) {
-  .logoText {
-    display: none; /* Hide company name text on tiny screens, logo image is enough */
+  .ctaButton {
+    display: none; /* Hide order button on mobile to save space */
   }
 
   .langLabel {
@@ -359,11 +374,6 @@
   
   .languageBtn {
     padding: 5px 6px;
-  }
-
-  .ctaButton {
-    padding: 5px 8px;
-    font-size: 11px;
   }
   
   .searchLink {
