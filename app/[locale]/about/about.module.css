@@ -480,7 +480,9 @@
 
   .statsGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns on tablet */
-    margin-top: 64px; /* Push cards further down from the text description */
+    margin: 64px auto 0; /* Push cards further down from the text description and center */
+    max-width: 620px; /* Limit width of stats grid on tablet to keep cards compact */
+    width: 100%;
   }
 
   .timeline::before {
