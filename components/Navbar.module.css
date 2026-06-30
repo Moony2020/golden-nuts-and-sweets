@@ -360,9 +360,13 @@
   }
 
   .languageBtn {
-    padding: 5px 8px;
+    padding: 5px 6px;
     font-size: 12px;
     gap: 4px;
+  }
+
+  .langLabel {
+    display: none; /* Hide full language name on mobile/tablet to save space */
   }
 
   .ctaButton {
@@ -382,14 +386,6 @@
 @media (max-width: 480px) {
   .ctaButton {
     display: none; /* Hide order button on mobile to save space */
-  }
-
-  .langLabel {
-    display: none; /* Hide full language name on mobile to save space */
-  }
-  
-  .languageBtn {
-    padding: 5px 6px;
   }
   
   .searchLink {
