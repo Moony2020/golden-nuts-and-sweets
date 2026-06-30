@@ -452,10 +452,6 @@
 }
 
 @media (max-width: 1200px) {
-  .statsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .pillarsGrid,
   .standardsGrid,
   .leadershipGrid,
@@ -470,17 +466,21 @@
   }
 
   .heroInner {
-    padding: 64px 16px 56px;
+    padding: 64px 16px 20px; /* Reduced bottom padding to push cards to the edge */
     display: block; /* Revert to block layout on mobile */
     min-height: auto;
   }
 
-  .statsGrid,
   .pillarsGrid,
   .standardsGrid,
   .leadershipGrid,
   .operationsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns on tablet */
+    margin-top: 64px; /* Push cards further down from the text description */
   }
 
   .timeline::before {
@@ -505,5 +505,29 @@
 
   .ctaSection p {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroInner {
+    padding: 48px 12px 12px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns on small mobile */
+    margin-top: 40px;
+    gap: 8px;
+  }
+
+  .statCard {
+    padding: 10px 6px;
+  }
+
+  .statCard strong {
+    font-size: 18px;
+  }
+
+  .statCard span {
+    font-size: 11px;
   }
 }
