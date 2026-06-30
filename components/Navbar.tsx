@@ -102,8 +102,8 @@ export default function Navbar({ locale }: NavbarProps) {
               className={styles.languageBtn}
               aria-label="Select language"
             >
-              <span className={styles.dropdownArrow} aria-hidden="true">
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" style={{ transform: langOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>
+              <span className={`${styles.dropdownArrow} ${langOpen ? styles.dropdownArrowOpen : ""}`} aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                 </svg>
               </span>
@@ -137,7 +137,6 @@ export default function Navbar({ locale }: NavbarProps) {
           <button
             className={styles.burger}
             aria-label="Menu"
-            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span />

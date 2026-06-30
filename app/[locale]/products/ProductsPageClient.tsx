@@ -479,7 +479,7 @@ export default function ProductsPageClient({ locale }: ProductsPageClientProps) 
                 <article key={product._id.toString()} className={styles.productCard}>
                   <div className={styles.productImageWrap}>
                     <SmartImage
-                      src={product.images?.[0] || CATEGORY_VISUALS[product.category]?.src || CATEGORY_VISUALS.nuts.src}
+                      src={product.image || CATEGORY_VISUALS[product.category]?.src || CATEGORY_VISUALS.nuts.src}
                       fallback={CATEGORY_VISUALS[product.category]?.fallback || CATEGORY_VISUALS.nuts.fallback}
                       alt={localProd.name}
                       className={styles.productImage}

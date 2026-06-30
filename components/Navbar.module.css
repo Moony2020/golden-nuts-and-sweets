@@ -324,3 +324,11 @@
     z-index: 40;
   }
 }
+
+.dropdownArrow svg {
+  transition: transform 0.2s ease;
+}
+
+.dropdownArrowOpen svg {
+  transform: rotate(180deg);
+}
