@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SUPPORTED_LANGUAGES } from "@/lib/config";
@@ -24,6 +27,27 @@ function label(
 export default function ServicesPage({ params }: Props) {
   const locale = params.locale as Language;
   if (!Object.keys(SUPPORTED_LANGUAGES).includes(locale)) notFound();
+
+  // Scroll Reveal Animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealed);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const revealElements = document.querySelectorAll(`.${styles.reveal}`);
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [locale]);
 
   const services = [
     ["🏪", "توريد المواد الغذائية بالجملة", "Wholesale Foodstuff Supply", "تغطية مرنة لطلبات السوبرماركت والموزعين والمتاجر.", "Flexible supply for retailers, distributors, and wholesale buyers."],
@@ -54,13 +78,13 @@ export default function ServicesPage({ params }: Props) {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <span className={styles.eyebrow}>{label(locale, "خدماتنا", "Our Services")}</span>
-          <h1 className={styles.title}>{label(locale, "حلول توريد غذائي متكاملة لأعمالك", "Integrated food supply solutions for your business")}</h1>
-          <p className={styles.lead}>
+          <span className={`${styles.eyebrow} ${styles.reveal} ${styles.revealUp}`}>{label(locale, "خدماتنا", "Our Services")}</span>
+          <h1 className={`${styles.title} ${styles.reveal} ${styles.revealUp} ${styles.stagger1}`}>{label(locale, "حلول توريد غذائي متكاملة لأعمالك", "Integrated food supply solutions for your business")}</h1>
+          <p className={`${styles.lead} ${styles.reveal} ${styles.revealUp} ${styles.stagger2}`}>
             {label(locale, "من التوريد بالجملة إلى الاستيراد والتصدير والعلامة الخاصة، نقدّم خدمات تشغيلية وتجارية مصممة لقطاع الغذاء.", "From wholesale supply to import/export and private label, we provide commercial and operational services tailored to the food sector.")}
           </p>
 
-          <div className={styles.heroStats}>
+          <div className={`${styles.heroStats} ${styles.reveal} ${styles.revealUp} ${styles.stagger3}`}>
             <div><strong>6+</strong><span>{label(locale, "مسارات خدمة", "Service Tracks")}</span></div>
             <div><strong>50+</strong><span>{label(locale, "دولة توريد", "Supply Markets")}</span></div>
             <div><strong>10K+</strong><span>{label(locale, "عميل ومشتري", "Clients & Buyers")}</span></div>
@@ -70,20 +94,23 @@ export default function ServicesPage({ params }: Props) {
 
       <section className={styles.section}>
         <div className={styles.grid}>
-          {services.map(([icon, arTitle, enTitle, arText, enText], index) => (
-            <article key={index} className={styles.card}>
-              <div className={styles.cardIcon}>{icon}</div>
-              <h3>{label(locale, arTitle, enTitle)}</h3>
-              <p>{label(locale, arText, enText)}</p>
-            </article>
-          ))}
+          {services.map(([icon, arTitle, enTitle, arText, enText], index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <article key={index} className={`${styles.card} ${styles.reveal} ${isEven ? styles.revealLeft : styles.revealRight} ${styles["stagger" + ((index % 4) + 1)]}`}>
+                <div className={styles.cardIcon}>{icon}</div>
+                <h3>{label(locale, arTitle, enTitle)}</h3>
+                <p>{label(locale, arText, enText)}</p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       <section className={styles.processBand}>
         <div className={styles.processInner}>
-          {process.map(([num, arText, enText]) => (
-            <div key={num} className={styles.processStep}>
+          {process.map(([num, arText, enText], index) => (
+            <div key={num} className={`${styles.processStep} ${styles.reveal} ${styles.revealScale} ${styles["stagger" + ((index % 4) + 1)]}`}>
               <strong>{num}</strong>
               <span>{label(locale, arText, enText)}</span>
             </div>
@@ -92,19 +119,19 @@ export default function ServicesPage({ params }: Props) {
       </section>
 
       <section className={styles.section}>
-        <div className={styles.sectionHeader}>
+        <div className={`${styles.sectionHeader} ${styles.reveal} ${styles.revealUp}`}>
           <span className={styles.eyebrow}>{label(locale, "القطاعات التي نخدمها", "Sectors We Serve")}</span>
           <h2 className={styles.sectionTitle}>{label(locale, "خدمات مخصصة لعملاء الجملة", "Tailored services for wholesale clients")}</h2>
         </div>
 
-        <div className={styles.sectors}>
+        <div className={`${styles.sectors} ${styles.reveal} ${styles.revealScale}`}>
           {sectors.map(([arText, enText]) => (
             <div key={arText} className={styles.sectorChip}>{label(locale, arText, enText)}</div>
           ))}
         </div>
       </section>
 
-      <section className={styles.cta}>
+      <section className={`${styles.cta} ${styles.reveal} ${styles.revealScale}`}>
         <h2>{label(locale, "تحتاج خدمة مخصصة؟", "Need a tailored service?")}</h2>
         <p>{label(locale, "تواصل مع فريقنا للحصول على عرض سعر مجاني وخطة توريد مناسبة لاحتياجاتك.", "Talk to our team for a free quote and a supply plan tailored to your needs.")}</p>
         <div className={styles.ctaActions}>
