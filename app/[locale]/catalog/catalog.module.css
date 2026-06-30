@@ -1,0 +1,31 @@
+.page { background: #f5efe0; }
+.hero { background: #12311c; color: #fff; }
+.heroInner, .section, .notes { max-width: 1180px; margin: 0 auto; padding: 72px 20px; }
+.heroMeta { display: flex; align-items: center; gap: 12px; color: var(--color-harvest-gold); margin-bottom: 34px; }
+.heroLine { width: 36px; height: 1px; background: var(--color-harvest-gold); }
+.heroGrid { display: grid; grid-template-columns: 320px 1fr; gap: 42px; align-items: flex-end; }
+.heroStats { display: flex; gap: 28px; }
+.heroStats div strong { display: block; font-size: 38px; color: #f1cf70; }
+.heroStats div span { color: rgba(255,255,255,.78); font-size: 14px; }
+.heroCopy { text-align: right; }
+.title { margin: 0 0 16px; font-size: clamp(34px, 5vw, 68px); }
+.lead { margin: 0; color: #d5dfd1; font-size: 20px; line-height: 1.9; }
+.actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: flex-end; margin-top: 28px; }
+.primaryBtn, .outlineBtn { min-height: 56px; display: inline-flex; align-items: center; justify-content: center; padding: 0 26px; border-radius: 999px; font-weight: 700; }
+.primaryBtn { background: var(--color-harvest-gold); color: #12311c; }
+.outlineBtn { border: 1px solid rgba(255,255,255,.24); color: #fff; }
+.sectionHeader { margin-bottom: 28px; }
+.eyebrow { display: inline-block; color: var(--color-harvest-gold); font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.sectionTitle { margin: 0; color: var(--color-deep-forest); font-size: clamp(28px, 4vw, 46px); }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; }
+.card { position: relative; background: #fff; padding: 26px 22px 24px; border-top: 4px solid var(--color-harvest-gold); box-shadow: 0 10px 26px rgba(13,43,26,.06); }
+.cardIndex { display: inline-block; color: #a08a49; font-weight: 800; margin-bottom: 12px; }
+.cardTitle { margin: 0 0 10px; color: var(--color-deep-forest); font-size: 24px; }
+.cardText { margin: 0 0 14px; color: #5c6a60; line-height: 1.8; }
+.cardAction { color: var(--color-harvest-gold); font-weight: 700; }
+.notes { padding-top: 0; }
+.noteCard { background: #fff; padding: 28px 24px; border-radius: 18px; box-shadow: 0 10px 24px rgba(13,43,26,.06); }
+.noteCard h3 { margin: 0 0 12px; color: var(--color-deep-forest); }
+.noteCard p { margin: 0; color: #5e6c62; line-height: 1.8; }
+@media (max-width: 1000px) { .heroGrid, .grid { grid-template-columns: 1fr 1fr; } .heroGrid { grid-template-columns: 1fr; } .heroCopy { text-align: center; } .actions { justify-content: center; } .heroStats { justify-content: center; } }
+@media (max-width: 640px) { .heroInner, .section, .notes { padding: 56px 16px; } .grid { grid-template-columns: 1fr; } }

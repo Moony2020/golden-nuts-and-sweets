@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "services": "Services",
+    "catalog": "Catalog",
+    "blog": "Blog",
+    "contact": "Contact",
+    "requestQuote": "Request Quote"
+  },
+  "hero": {
+    "headline": "Your Trusted Partner in Premium Foodstuff Trading",
+    "subheadline": "We supply the finest foodstuffs to restaurants, hotels, cafes, and supermarkets across the region — from grains and pulses to nuts, spices, coffee, and premium sweets.",
+    "browseProducts": "Browse Products",
+    "downloadCatalog": "Download Catalog",
+    "contactWhatsApp": "Contact on WhatsApp"
+  },
+  "stats": {
+    "customers": "+10,000 Satisfied Customers",
+    "experience": "88 Years of Excellence",
+    "products": "+1,000 Premium Products"
+  },
+  "categories": {
+    "title": "Featured Categories",
+    "subtitle": "A wide selection to meet your business needs"
+  },
+  "products": {
+    "title": "Our Collection",
+    "search": "Search products...",
+    "filters": "Filter Products",
+    "orderQuantity": "Packaging",
+    "requestQuote": "Request Quote"
+  },
+  "footer": {
+    "company": "Royal Harvest Foodstuff Trading Co. LLC",
+    "tagline": "Trusted wholesale foodstuff supplier in Dubai and the UAE.",
+    "quickLinks": "Quick Links",
+    "policies": "Policies",
+    "contact": "Contact Us",
+    "copyright": "© 2024 Royal Harvest Foodstuff Trading. All rights reserved."
+  }
+}

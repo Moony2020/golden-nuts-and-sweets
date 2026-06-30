@@ -1,0 +1,54 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7a4b25"/>
+      <stop offset="55%" stop-color="#5c3618"/>
+      <stop offset="100%" stop-color="#3d2410"/>
+    </linearGradient>
+    <linearGradient id="bowlRim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9c6334"/>
+      <stop offset="100%" stop-color="#6d3f1d"/>
+    </linearGradient>
+    <radialGradient id="nutA" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#e8d9a8"/>
+      <stop offset="100%" stop-color="#b89b54"/>
+    </radialGradient>
+    <radialGradient id="nutB" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#cde0a0"/>
+      <stop offset="100%" stop-color="#7f9b4e"/>
+    </radialGradient>
+    <radialGradient id="nutC" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#d8a86a"/>
+      <stop offset="100%" stop-color="#9c6a34"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="300" cy="290" r="290" fill="url(#halo)"/>
+
+  <!-- Bowl -->
+  <ellipse cx="300" cy="360" rx="210" ry="64" fill="#2a1809" opacity="0.5"/>
+  <path d="M96 350 A204 150 0 0 0 504 350 Z" fill="url(#bowl)"/>
+  <ellipse cx="300" cy="350" rx="204" ry="74" fill="url(#bowlRim)"/>
+  <ellipse cx="300" cy="350" rx="184" ry="62" fill="#3d2410"/>
+
+  <!-- Nuts pile -->
+  <g>
+    <ellipse cx="230" cy="330" rx="34" ry="26" fill="url(#nutB)" transform="rotate(-18 230 330)"/>
+    <ellipse cx="300" cy="318" rx="36" ry="27" fill="url(#nutA)" transform="rotate(10 300 318)"/>
+    <ellipse cx="372" cy="332" rx="34" ry="26" fill="url(#nutC)" transform="rotate(22 372 332)"/>
+    <ellipse cx="262" cy="300" rx="33" ry="25" fill="url(#nutC)" transform="rotate(8 262 300)"/>
+    <ellipse cx="338" cy="298" rx="34" ry="26" fill="url(#nutB)" transform="rotate(-14 338 298)"/>
+    <ellipse cx="300" cy="280" rx="35" ry="26" fill="url(#nutA)" transform="rotate(0 300 280)"/>
+    <ellipse cx="232" cy="276" rx="30" ry="23" fill="url(#nutA)" transform="rotate(-24 232 276)"/>
+    <ellipse cx="368" cy="278" rx="30" ry="23" fill="url(#nutC)" transform="rotate(20 368 278)"/>
+    <ellipse cx="300" cy="252" rx="31" ry="24" fill="url(#nutB)" transform="rotate(6 300 252)"/>
+    <!-- pistachio splits -->
+    <path d="M286 312 q14 -10 28 0" stroke="#5c3a12" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M218 326 q12 -8 24 0" stroke="#41571f" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M326 292 q12 -8 24 0" stroke="#41571f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

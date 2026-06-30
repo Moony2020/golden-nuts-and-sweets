@@ -1,0 +1,22 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b4332"/>
+      <stop offset="100%" stop-color="#0d2b1a"/>
+    </linearGradient>
+    <radialGradient id="n1" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#e8d9a8"/><stop offset="100%" stop-color="#b89b54"/></radialGradient>
+    <radialGradient id="n2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#cde0a0"/><stop offset="100%" stop-color="#7f9b4e"/></radialGradient>
+    <radialGradient id="n3" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#d8a86a"/><stop offset="100%" stop-color="#9c6a34"/></radialGradient>
+  </defs>
+  <rect width="600" height="420" fill="url(#bg)"/>
+  <circle cx="300" cy="200" r="150" fill="#c9a84c" opacity="0.12"/>
+  <ellipse cx="300" cy="250" rx="150" ry="46" fill="#5c3618"/>
+  <ellipse cx="300" cy="240" rx="150" ry="52" fill="#6d3f1d"/>
+  <ellipse cx="300" cy="238" rx="132" ry="42" fill="#3d2410"/>
+  <ellipse cx="250" cy="222" rx="28" ry="21" fill="url(#n2)" transform="rotate(-16 250 222)"/>
+  <ellipse cx="310" cy="214" rx="30" ry="22" fill="url(#n1)" transform="rotate(10 310 214)"/>
+  <ellipse cx="362" cy="224" rx="28" ry="21" fill="url(#n3)" transform="rotate(20 362 224)"/>
+  <ellipse cx="278" cy="198" rx="29" ry="22" fill="url(#n3)"/>
+  <ellipse cx="338" cy="198" rx="29" ry="22" fill="url(#n2)"/>
+  <ellipse cx="308" cy="180" rx="29" ry="22" fill="url(#n1)"/>
+</svg>

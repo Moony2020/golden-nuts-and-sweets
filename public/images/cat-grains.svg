@@ -1,0 +1,23 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1b4332"/><stop offset="100%" stop-color="#0d2b1a"/></linearGradient>
+    <linearGradient id="grain" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0dca0"/><stop offset="100%" stop-color="#c9a84c"/></linearGradient>
+  </defs>
+  <rect width="600" height="420" fill="url(#bgg)"/>
+  <circle cx="300" cy="200" r="150" fill="#c9a84c" opacity="0.12"/>
+  <ellipse cx="300" cy="250" rx="150" ry="44" fill="#5c3618"/>
+  <ellipse cx="300" cy="242" rx="150" ry="50" fill="#6d3f1d"/>
+  <ellipse cx="300" cy="240" rx="132" ry="40" fill="#3d2410"/>
+  <g fill="url(#grain)">
+    <ellipse cx="250" cy="222" rx="8" ry="16" transform="rotate(-20 250 222)"/>
+    <ellipse cx="272" cy="214" rx="8" ry="16" transform="rotate(10 272 214)"/>
+    <ellipse cx="296" cy="218" rx="8" ry="16" transform="rotate(-8 296 218)"/>
+    <ellipse cx="320" cy="212" rx="8" ry="16" transform="rotate(18 320 212)"/>
+    <ellipse cx="344" cy="220" rx="8" ry="16" transform="rotate(-14 344 220)"/>
+    <ellipse cx="262" cy="200" rx="8" ry="16" transform="rotate(24 262 200)"/>
+    <ellipse cx="286" cy="196" rx="8" ry="16" transform="rotate(-18 286 196)"/>
+    <ellipse cx="310" cy="194" rx="8" ry="16" transform="rotate(6 310 194)"/>
+    <ellipse cx="334" cy="198" rx="8" ry="16" transform="rotate(-22 334 198)"/>
+    <ellipse cx="298" cy="180" rx="8" ry="16" transform="rotate(12 298 180)"/>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "products": "Produits",
+    "about": "À propos de nous",
+    "services": "Services",
+    "catalog": "Catalogue",
+    "blog": "Blog",
+    "contact": "Contact",
+    "requestQuote": "Demander un Devis"
+  },
+  "hero": {
+    "headline": "Votre partenaire de confiance dans le commerce des denrées alimentaires en gros",
+    "subheadline": "Nous fournissons les meilleures denrées alimentaires aux restaurants, hôtels, cafés et supermarchés de la région — des céréales et légumineuses aux noix, épices, café et bonbons premium.",
+    "browseProducts": "Parcourir les produits",
+    "downloadCatalog": "Télécharger le catalogue",
+    "contactWhatsApp": "Contacter via WhatsApp"
+  },
+  "stats": {
+    "customers": "+10 000 clients satisfaits",
+    "experience": "88 ans d'excellence",
+    "products": "+1 000 produits premium"
+  },
+  "categories": {
+    "title": "Catégories en vedette",
+    "subtitle": "Une large sélection pour répondre aux besoins de votre entreprise"
+  },
+  "products": {
+    "title": "Notre collection",
+    "search": "Rechercher un produit...",
+    "filters": "Filtrer les produits",
+    "orderQuantity": "Emballage",
+    "requestQuote": "Demander un devis"
+  },
+  "footer": {
+    "company": "Royal Harvest Foodstuff Trading Co. LLC",
+    "tagline": "Fournisseur de denrées alimentaires en gros de confiance à Dubaï et aux EAU.",
+    "quickLinks": "Liens rapides",
+    "policies": "Politiques",
+    "contact": "Nous contacter",
+    "copyright": "© 2024 Royal Harvest Foodstuff Trading. Tous droits réservés."
+  }
+}

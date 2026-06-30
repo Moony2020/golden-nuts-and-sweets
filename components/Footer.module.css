@@ -1,0 +1,203 @@
+.footer {
+  background: #0a2215; /* Sightly lighter rich dark forest green */
+  color: var(--color-on-primary);
+  border-top: 1px solid rgba(168, 197, 181, 0.1);
+  padding: 64px 16px 28px;
+  margin-top: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerLogo {
+  height: 56px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.brandTitleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.columnTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-harvest-gold);
+  font-family: var(--font-display);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subText {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.75;
+  margin: 0;
+  color: #d1dad4;
+}
+
+.socialsInline {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--color-harvest-gold);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--color-harvest-gold);
+  color: #051009;
+  border-color: var(--color-harvest-gold);
+  transform: translateY(-2px);
+}
+
+.columnHeading {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-harvest-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linkList a {
+  font-size: 14px;
+  color: #a3b2a8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.linkList a:hover {
+  color: var(--color-harvest-gold);
+}
+
+/* Contact Info List with Icons */
+.contactInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Icons styling to match colors */
+.contactIconWhatsApp,
+.contactIconPhone,
+.contactIconMail,
+.contactIconPin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-harvest-gold);
+}
+
+.contactIconWhatsApp {
+  color: #25d366; /* Specific green for WhatsApp icon */
+}
+
+.contactLink {
+  font-size: 14px;
+  color: #d1dad4;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: var(--color-harvest-gold);
+}
+
+.contactText {
+  font-size: 14px;
+  color: #d1dad4;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 13px;
+  opacity: 0.5;
+  margin: 0;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 48px 16px 24px;
+  }
+
+  .grid {
+    gap: 36px;
+  }
+}

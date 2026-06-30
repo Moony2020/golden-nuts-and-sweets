@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "products": "Productos",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "catalog": "Catálogo",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "requestQuote": "Solicitar Cotización"
+  },
+  "hero": {
+    "headline": "Tu socio confiable en el comercio mayorista de alimentos",
+    "subheadline": "Suministramos los mejores alimentos a restaurantes, hoteles, cafés y supermercados de la región — desde cereales y legumbres hasta frutos secos, especias, café y dulces premium.",
+    "browseProducts": "Explorar Productos",
+    "downloadCatalog": "Descargar Catálogo",
+    "contactWhatsApp": "Contactar por WhatsApp"
+  },
+  "stats": {
+    "customers": "+10,000 Clientes Satisfechos",
+    "experience": "88 Años de Excelencia",
+    "products": "+1,000 Productos Premium"
+  },
+  "categories": {
+    "title": "Categorías Destacadas",
+    "subtitle": "Una amplia selección para satisfacer las necesidades de tu negocio"
+  },
+  "products": {
+    "title": "Nuestra Colección",
+    "search": "Buscar producto...",
+    "filters": "Filtrar Productos",
+    "orderQuantity": "Embalaje",
+    "requestQuote": "Solicitar Cotización"
+  },
+  "footer": {
+    "company": "Royal Harvest Foodstuff Trading Co. LLC",
+    "tagline": "Proveedor mayorista confiable de alimentos en Dubai y EAU.",
+    "quickLinks": "Enlaces Rápidos",
+    "policies": "Políticas",
+    "contact": "Contáctenos",
+    "copyright": "© 2024 Royal Harvest Foodstuff Trading. Todos los derechos reservados."
+  }
+}

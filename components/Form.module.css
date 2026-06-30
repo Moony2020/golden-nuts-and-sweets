@@ -1,0 +1,26 @@
+.form {
+  background: var(--green-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.form .btn { margin-top: 6px; width: 100%; }
+
+.done {
+  background: var(--green-800);
+  border: 1px solid var(--gold-500);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  text-align: center;
+}
+.done h3 {
+  color: var(--cream);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.done p { color: var(--text-muted); }
+
+@media (max-width: 620px) {
+  .form { padding: 20px; }
+}

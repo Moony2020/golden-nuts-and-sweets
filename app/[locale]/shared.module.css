@@ -1,0 +1,134 @@
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 90px;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 0 56px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-harvest-gold);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 800;
+  color: var(--color-deep-forest);
+  margin-bottom: 18px;
+  line-height: 1.18;
+}
+
+.lead {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-on-surface-variant);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(168, 197, 181, 0.4);
+  border-radius: 18px;
+  padding: 30px 26px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(13, 43, 26, 0.14);
+}
+
+.cardIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  background: rgba(201, 168, 76, 0.14);
+  margin-bottom: 18px;
+}
+
+.cardTitle {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-deep-forest);
+  margin-bottom: 10px;
+}
+
+.cardText {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--color-deep-forest);
+  margin: 0 0 40px;
+}
+
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #0d2b1a 0%, #1b4332 100%);
+  border-radius: 24px;
+  padding: 60px 24px;
+  margin-top: 72px;
+  color: #fff;
+}
+
+.cta h2 {
+  font-size: clamp(22px, 4vw, 32px);
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 38px;
+  background: linear-gradient(135deg, #d4b965, #c9a84c);
+  color: var(--color-deep-forest);
+  border-radius: 100px;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(201, 168, 76, 0.4);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 56px 0 40px;
+  }
+}

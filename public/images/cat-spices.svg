@@ -1,0 +1,20 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgs" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1b4332"/><stop offset="100%" stop-color="#0d2b1a"/></linearGradient>
+  </defs>
+  <rect width="600" height="420" fill="url(#bgs)"/>
+  <circle cx="300" cy="200" r="150" fill="#c9a84c" opacity="0.12"/>
+  <g>
+    <circle cx="240" cy="210" r="40" fill="#b5421f"/>
+    <circle cx="240" cy="210" r="40" fill="#000" opacity="0.05"/>
+    <circle cx="300" cy="200" r="40" fill="#d9962a"/>
+    <circle cx="360" cy="210" r="40" fill="#6e8f33"/>
+    <circle cx="270" cy="255" r="34" fill="#8a3410"/>
+    <circle cx="330" cy="255" r="34" fill="#c97a1c"/>
+  </g>
+  <g opacity="0.25" fill="#000">
+    <circle cx="232" cy="204" r="3"/><circle cx="248" cy="216" r="3"/><circle cx="240" cy="210" r="3"/>
+    <circle cx="294" cy="196" r="3"/><circle cx="306" cy="206" r="3"/>
+    <circle cx="354" cy="206" r="3"/><circle cx="366" cy="214" r="3"/>
+  </g>
+</svg>
