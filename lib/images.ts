@@ -26,7 +26,7 @@ export const IMG = {
     fallback: "/images/hero-nuts.svg",
   },
   about: {
-    photo: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1100&q=80",
+    photo: "/images/about-hero.jpg",
     fallback: "/images/cat-grains.svg",
   },
   warehouse: {
