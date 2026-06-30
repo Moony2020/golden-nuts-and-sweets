@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, DM_Sans, IBM_Plex_Sans_Arabic, Playfair_Display } from "next/font/google";
+import { Outfit, DM_Sans, Cairo, Playfair_Display } from "next/font/google";
 import { COMPANY } from "@/lib/config";
 import "./globals.css";
 
@@ -24,11 +24,11 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+const cairo = Cairo({
   subsets: ["arabic"],
-  variable: "--font-ibm-arabic",
+  variable: "--font-cairo",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function RootLayout({
     <html
       lang="ar"
       suppressHydrationWarning
-      className={`${outfit.variable} ${playfair.variable} ${dmSans.variable} ${ibmPlexSansArabic.variable}`}
+      className={`${outfit.variable} ${playfair.variable} ${dmSans.variable} ${cairo.variable}`}
     >
       <body>{children}</body>
     </html>

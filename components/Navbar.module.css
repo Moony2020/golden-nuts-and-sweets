@@ -381,9 +381,18 @@
 }
 
 /* Force modern Kufic Arabic font for RTL layouts */
-:global([dir="rtl"]) .navLink,
-:global([dir="rtl"]) .logoText,
+:global([dir="rtl"]) .navLink {
+  font-family: var(--font-cairo), system-ui, sans-serif !important;
+  font-size: 16px !important;
+}
+
+:global([dir="rtl"]) .logoText {
+  font-family: var(--font-cairo), system-ui, sans-serif !important;
+  font-size: 19px !important;
+}
+
 :global([dir="rtl"]) .ctaButton,
 :global([dir="rtl"]) .languageBtn {
-  font-family: var(--font-ibm-arabic), system-ui, sans-serif !important;
+  font-family: var(--font-cairo), system-ui, sans-serif !important;
+  font-size: 14px !important;
 }
