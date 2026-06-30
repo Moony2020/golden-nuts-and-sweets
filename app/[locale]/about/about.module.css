@@ -284,6 +284,8 @@
   position: relative;
   width: 50%;
   padding: 0 24px 28px;
+  opacity: 0; /* Fade in animation start */
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timelineItem::before {
@@ -296,22 +298,30 @@
   background: #12311c;
   border: 6px solid #d7bb63;
   box-shadow: 0 0 0 8px rgba(215, 187, 99, 0.12);
+  z-index: 2;
 }
 
 .timelineRight {
-  margin-left: 50%;
+  margin-inline-start: 50%; /* Logical start margin */
+  transform: translateX(40px); /* Slide in from right */
 }
 
 .timelineLeft {
-  margin-left: 0;
+  margin-inline-start: 0; /* Logical start margin */
+  transform: translateX(-40px); /* Slide in from left */
+}
+
+.itemVisible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 .timelineRight::before {
-  left: -9px;
+  inset-inline-start: -9px; /* Logical indicator position */
 }
 
 .timelineLeft::before {
-  right: -9px;
+  inset-inline-end: -9px; /* Logical indicator position */
 }
 
 .timelineCard {
@@ -490,7 +500,9 @@
   }
 
   .timeline::before {
-    left: 18px;
+    inset-inline-start: 18px; /* Logical center line on mobile */
+    left: auto;
+    right: auto;
     transform: none;
   }
 
@@ -498,15 +510,17 @@
   .timelineRight,
   .timelineLeft {
     width: 100%;
-    margin-left: 0;
-    padding-left: 54px;
-    padding-right: 0;
+    margin-inline-start: 0; /* Reset start margin */
+    padding-inline-start: 54px; /* Space for the line */
+    padding-inline-end: 0;
+    transform: none !important; /* Disable scroll animation offset on mobile */
+    opacity: 1 !important; /* Always visible on mobile */
   }
 
   .timelineRight::before,
   .timelineLeft::before {
-    left: 9px;
-    right: auto;
+    inset-inline-start: 9px !important; /* Align dot with the vertical line */
+    inset-inline-end: auto !important;
   }
 
   .ctaSection p {

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SUPPORTED_LANGUAGES, COMPANY } from "@/lib/config";
@@ -27,6 +30,26 @@ export default function AboutPage({ params }: Props) {
   const locale = params.locale as Language;
   if (!Object.keys(SUPPORTED_LANGUAGES).includes(locale)) notFound();
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.itemVisible);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    const items = document.querySelectorAll(`.${styles.timelineItem}`);
+    items.forEach((item) => observer.observe(item));
+
+    return () => {
+      items.forEach((item) => observer.unobserve(item));
+    };
+  }, [locale]);
+
   const stats = [
     ["1937", "عام التأسيس", "Founded"],
     ["85+", "سنة من الخبرة التراكمية", "Years of expertise"],
@@ -37,35 +60,149 @@ export default function AboutPage({ params }: Props) {
   ];
 
   const pillars = [
-    ["الثقة والمصداقية", "Every deal is built on transparency, consistency, and dependable delivery."],
-    ["السرعة والكفاءة", "Fast execution, clear coordination, and safe handling across every shipment."],
-    ["الجودة أولاً", "We only accept products sourced from suppliers that meet our internal standards."],
-    ["الشراكة العالمية", "A trusted regional network connected to more than 50 sourcing and trading markets."],
+    [
+      "الثقة والمصداقية",
+      "Trust & Reliability",
+      "كل صفقة تُبنى على الشفافية، والاتساق، والتسليم الموثوق.",
+      "Every deal is built on transparency, consistency, and dependable delivery."
+    ],
+    [
+      "السرعة والكفاءة",
+      "Speed & Efficiency",
+      "تنفيذ سريع، وتنسيق واضح، وتداول آمن لجميع الشحنات.",
+      "Fast execution, clear coordination, and safe handling across every shipment."
+    ],
+    [
+      "الجودة أولاً",
+      "Quality First",
+      "نحن نقبل فقط المنتجات التي يتم الحصول عليها من موردين يستوفون معاييرنا الداخلية.",
+      "We only accept products sourced from suppliers that meet our internal standards."
+    ],
+    [
+      "الشراكة العالمية",
+      "Global Partnership",
+      "شبكة إقليمية موثوقة متصلة بأكثر من 50 سوقاً للتوريد والتجارة.",
+      "A trusted regional network connected to more than 50 sourcing and trading markets."
+    ],
   ];
 
   const leaders = [
-    ["👔", "المدير العام - مدير مؤسس", "الرؤية الاستراتيجية والقيادة التنفيذية", "+50 سنة خبرة"],
-    ["📈", "المدير التنفيذي - المبيعات والتسويق", "تطوير الأعمال والعملاء والشراكات الاستراتيجية", "+15 سنة خبرة"],
-    ["🏅", "مدير المشتريات وإدارة الجودة", "ضمان الجودة وسلامة الغذاء وسلاسل التوريد", "+5 سنوات خبرة"],
-    ["💼", "المدير المالي والعمليات اللوجستية", "الإدارة المالية والشحن والتخليص الجمركي", "+15 سنة خبرة"],
-    ["⚙️", "مدير العمليات الداخلية", "إدارة المستودعات والعمليات اليومية", "+25 سنة خبرة"],
+    [
+      "👔",
+      "المدير العام - مدير مؤسس",
+      "Founder & General Manager",
+      "الرؤية الاستراتيجية والقيادة التنفيذية للمجموعة",
+      "Strategic vision and executive leadership of the group",
+      "+50 سنة خبرة",
+      "+50 Years Exp"
+    ],
+    [
+      "📈",
+      "المدير التنفيذي - المبيعات والتسويق",
+      "Executive Director - Sales & Marketing",
+      "تطوير الأعمال والعملاء والشراكات الاستراتيجية",
+      "Business development, client relations & strategic partnerships",
+      "+15 سنة خبرة",
+      "+15 Years Exp"
+    ],
+    [
+      "🏅",
+      "مدير المشتريات وإدارة الجودة",
+      "Purchasing & Quality Manager",
+      "ضمان الجودة وسلامة الغذاء وسلاسل التوريد",
+      "Quality assurance, food safety & supply chain management",
+      "+5 سنوات خبرة",
+      "+5 Years Exp"
+    ],
+    [
+      "💼",
+      "المدير المالي والعمليات اللوجستية",
+      "Financial Director & Logistics",
+      "الإدارة المالية والشحن والتخليص الجمركي",
+      "Financial management, shipping & customs clearance operations",
+      "+15 سنة خبرة",
+      "+15 Years Exp"
+    ],
+    [
+      "⚙️",
+      "مدير العمليات الداخلية",
+      "Internal Operations Manager",
+      "إدارة المستودعات والعمليات اليومية",
+      "Warehouse management and daily internal operations",
+      "+25 سنة خبرة",
+      "+25 Years Exp"
+    ],
   ];
 
   const milestones = [
-    ["1937", "تأسيس المجموعة التجارية العائلية - بداية مسيرة التجارة الغذائية"],
-    ["1998", "أول صفقة تصدير دولية إلى دول الخليج العربي وتوسيع الشبكة"],
-    ["2002", "افتتاح مستودع مبرد ومنشأة تعبئة وتغليف متخصصة"],
-    ["2012", "التأسيس الرسمي في الإمارات العربية المتحدة - رويال هارفست للمواد الغذائية ذ.م.م"],
-    ["2015", "تجاوز 5,000 عميل نشط وفتح خطوط شحن مباشرة مع 15 دولة"],
-    ["2026", "شبكة تشغيل قوية تخدم المطاعم والفنادق والسوبرماركت والموزعين بالجملة"],
+    [
+      "1937",
+      "تأسيس المجموعة التجارية العائلية - بداية مسيرة التجارة الغذائية",
+      "Establishment of the family business group - Beginning of foodstuff trading"
+    ],
+    [
+      "1998",
+      "أول صفقة تصدير دولية إلى دول الخليج العربي وتوسيع الشبكة",
+      "First international export deal to GCC countries and network expansion"
+    ],
+    [
+      "2002",
+      "افتتاح مستودع مبرد ومنشأة تعبئة وتغليف متخصصة",
+      "Opening a refrigerated warehouse and a specialized packing facility"
+    ],
+    [
+      "2012",
+      "التأسيس الرسمي في الإمارات العربية المتحدة - رويال هارفست للمواد الغذائية ذ.م.م",
+      "Official incorporation in the UAE - Royal Harvest Foodstuff LLC"
+    ],
+    [
+      "2015",
+      "تجاوز 5,000 عميل نشط وفتح خطوط شحن مباشرة مع 15 دولة",
+      "Exceeded 5,000 active clients and opened direct shipping links with 15 countries"
+    ],
+    [
+      "2026",
+      "شبكة تشغيل قوية تخدم المطاعم والفنادق والسوبرماركت والموزعين بالجملة",
+      "A robust operating network serving restaurants, hotels, supermarkets, and wholesale distributors"
+    ],
   ];
 
   const standards = [
-    ["🏛️", "Dubai Municipality", "معتمد من بلدية دبي في جودة الغذاء والسلامة"],
-    ["🧾", "Customs", "معتمد من دائرة الجمارك والموانئ في الإمارات"],
-    ["⚓", "DP World", "شريك موانئ وشحن عالمي لعمليات التوريد والتخزين"],
-    ["🏢", "DED", "مرخص من دائرة التنمية الاقتصادية في دبي"],
-    ["🌿", "Halal", "منتجاتنا معتمدة وفق معايير الحلال الدولية"],
+    [
+      "🏛️",
+      "بلدية دبي",
+      "Dubai Municipality",
+      "معتمد من بلدية دبي في جودة الغذاء والسلامة",
+      "Approved by Dubai Municipality for food safety and quality standards"
+    ],
+    [
+      "🧾",
+      "جمارك دبي",
+      "Dubai Customs",
+      "معتمد من دائرة الجمارك والموانئ في الإمارات",
+      "Approved by the Customs and Ports Authority in the UAE"
+    ],
+    [
+      "⚓",
+      "موانئ دبي العالمية",
+      "DP World",
+      "شريك موانئ وشحن عالمي لعمليات التوريد والتخزين",
+      "Global shipping and ports partner for supply chain operations"
+    ],
+    [
+      "🏢",
+      "اقتصادية دبي",
+      "Dubai Economy (DED)",
+      "مرخص من دائرة التنمية الاقتصادية في دبي",
+      "Licensed by the Dubai Department of Economic Development"
+    ],
+    [
+      "🌿",
+      "شهادة الحلال",
+      "Halal Certificate",
+      "منتجاتنا معتمدة وفق معايير الحلال الدولية",
+      "Our products are fully certified under international Halal standards"
+    ],
   ];
 
   const operations = [
@@ -73,19 +210,25 @@ export default function AboutPage({ params }: Props) {
       IMG.about.photo,
       IMG.about.fallback,
       "بنية تحتية لوجستية متكاملة",
+      "Integrated Logistics Infrastructure",
       "4 مستودعات متخصصة في دبي - مبردة وجافة ومجهزة بأحدث أنظمة التخزين والتبريد، جاهزة للتوريد الفوري.",
+      "4 specialized warehouses in Dubai - chilled, dry, and equipped with state-of-the-art storage systems, ready for instant supply."
     ],
     [
       IMG.warehouse.photo,
       IMG.warehouse.fallback,
       "عمليات الشحن والتخليص",
+      "Shipping & Clearance Operations",
       "تنسيق مباشر مع الشحن البري والبحري والجوي، مع متابعة دقيقة للطلبات حتى التسليم النهائي.",
+      "Direct coordination with land, sea, and air freight, with meticulous tracking until final delivery."
     ],
     [
       IMG.spices.photo,
       IMG.spices.fallback,
       "قسم فرز البهارات والتوابل",
+      "Spices & Herbs Sorting Division",
       "فرز وتعبئة ومراجعة الجودة بمعايير صارمة قبل إدخال أي منتج إلى سلسلة التوريد.",
+      "Sorting, packing, and quality review under strict standards before any product enters the supply chain."
     ],
   ];
 
@@ -133,10 +276,10 @@ export default function AboutPage({ params }: Props) {
         </div>
 
         <div className={styles.pillarsGrid}>
-          {pillars.map(([title, enDesc], index) => (
+          {pillars.map(([arTitle, enTitle, arDesc, enDesc], index) => (
             <div key={index} className={styles.pillarCard}>
-              <h3>{label(locale, title, title)}</h3>
-              <p>{label(locale, enDesc, enDesc)}</p>
+              <h3>{label(locale, arTitle, enTitle)}</h3>
+              <p>{label(locale, arDesc, enDesc)}</p>
             </div>
           ))}
         </div>
@@ -149,12 +292,12 @@ export default function AboutPage({ params }: Props) {
         </div>
 
         <div className={styles.leadershipGrid}>
-          {leaders.map(([icon, title, subtitle, exp], index) => (
+          {leaders.map(([icon, arTitle, enTitle, arSub, enSub, arExp, enExp], index) => (
             <article key={index} className={styles.leaderCard}>
               <div className={styles.leaderIcon}>{icon}</div>
-              <h3>{label(locale, title, title)}</h3>
-              <p>{label(locale, subtitle, subtitle)}</p>
-              <span className={styles.experienceTag}>{label(locale, exp, exp)}</span>
+              <h3>{label(locale, arTitle, enTitle)}</h3>
+              <p>{label(locale, arSub, enSub)}</p>
+              <span className={styles.experienceTag}>{label(locale, arExp, enExp)}</span>
             </article>
           ))}
         </div>
@@ -167,11 +310,11 @@ export default function AboutPage({ params }: Props) {
         </div>
 
         <div className={styles.timeline}>
-          {milestones.map(([year, textValue], index) => (
+          {milestones.map(([year, arText, enText], index) => (
             <div key={year} className={`${styles.timelineItem} ${index % 2 === 0 ? styles.timelineRight : styles.timelineLeft}`}>
               <div className={styles.timelineCard}>
                 <strong>{year}</strong>
-                <p>{label(locale, textValue, textValue)}</p>
+                <p>{label(locale, arText, enText)}</p>
               </div>
             </div>
           ))}
@@ -185,11 +328,11 @@ export default function AboutPage({ params }: Props) {
         </div>
 
         <div className={styles.standardsGrid}>
-          {standards.map(([icon, title, desc], index) => (
+          {standards.map(([icon, arTitle, enTitle, arDesc, enDesc], index) => (
             <div key={index} className={styles.standardCard}>
               <div className={styles.standardIcon}>{icon}</div>
-              <h3>{title}</h3>
-              <p>{label(locale, desc, desc)}</p>
+              <h3>{label(locale, arTitle, enTitle)}</h3>
+              <p>{label(locale, arDesc, enDesc)}</p>
             </div>
           ))}
         </div>
@@ -209,12 +352,12 @@ export default function AboutPage({ params }: Props) {
         </div>
 
         <div className={styles.operationsGrid}>
-          {operations.map(([src, fallback, title, desc], index) => (
+          {operations.map(([src, fallback, arTitle, enTitle, arDesc, enDesc], index) => (
             <article key={index} className={styles.operationCard}>
-              <SmartImage src={src} fallback={fallback} alt={title} className={styles.operationImage} />
+              <SmartImage src={src} fallback={fallback} alt={label(locale, arTitle, enTitle)} className={styles.operationImage} />
               <div className={styles.operationOverlay}>
-                <h3>{label(locale, title, title)}</h3>
-                <p>{label(locale, desc, desc)}</p>
+                <h3>{label(locale, arTitle, enTitle)}</h3>
+                <p>{label(locale, arDesc, enDesc)}</p>
               </div>
             </article>
           ))}
