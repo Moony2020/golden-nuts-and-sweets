@@ -379,3 +379,11 @@
 .dropdownArrowOpen svg {
   transform: rotate(180deg);
 }
+
+/* Force modern Kufic Arabic font for RTL layouts */
+:global([dir="rtl"]) .navLink,
+:global([dir="rtl"]) .logoText,
+:global([dir="rtl"]) .ctaButton,
+:global([dir="rtl"]) .languageBtn {
+  font-family: var(--font-ibm-arabic), system-ui, sans-serif !important;
+}
