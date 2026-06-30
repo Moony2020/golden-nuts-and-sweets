@@ -30,8 +30,7 @@ export default function CatalogPage({ params }: Props) {
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.heroMeta}>
-            <span className={styles.heroLine} />
-            <span>{label(locale, "01 - الكتالوج", "01 - Catalog")}</span>
+            <span>{label(locale, "الكتالوج", "Catalog")}</span>
           </div>
           <div className={styles.heroGrid}>
             <div className={styles.heroStats}>
