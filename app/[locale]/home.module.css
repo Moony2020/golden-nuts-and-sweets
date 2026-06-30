@@ -104,6 +104,7 @@
   font-size: 13px;
   font-weight: 700;
   color: var(--color-harvest-gold);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -191,6 +192,7 @@
   border: 1px solid rgba(201, 168, 76, 0.4);
   color: var(--color-on-primary);
   background: rgba(13, 43, 26, 0.65);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -229,6 +231,7 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
   border-radius: 999px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
