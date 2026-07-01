@@ -6,6 +6,7 @@ import type { Language } from "@/lib/config";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import TopLoader from "@/components/TopLoader";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function LocaleLayout({ children, params }: Props) {
 
   return (
     <div lang={locale} dir={direction}>
+      <TopLoader />
       <Navbar locale={locale} />
       <main>{children}</main>
       <Footer locale={locale} />

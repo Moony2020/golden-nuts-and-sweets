@@ -58,17 +58,14 @@
   text-decoration: none;
   transition: color 0.3s ease;
   padding: 8px 0;
-  border-bottom: 2px solid transparent;
 }
 
 .navLink:hover {
   color: var(--color-harvest-gold);
-  border-bottom-color: var(--color-harvest-gold);
 }
 
 .activeNavLink {
   color: var(--color-harvest-gold) !important;
-  border-bottom-color: var(--color-harvest-gold) !important;
 }
 
 .navOrderBtn {

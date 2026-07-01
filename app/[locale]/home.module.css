@@ -1349,16 +1349,23 @@
   overflow: hidden;
   padding: 16px 4px 28px;
   margin-bottom: 48px;
+  direction: ltr;
 }
 
 .countriesTrack {
   display: flex;
-  gap: 20px;
   width: max-content;
-  padding-inline-start: 12px;
+  flex-shrink: 0;
   animation: countriesLoop 38s linear infinite;
   will-change: transform;
   direction: ltr;
+}
+
+.countriesGroup {
+  display: flex;
+  gap: 20px;
+  flex-shrink: 0;
+  padding-right: 20px;
 }
 
 .countriesTrackWrapper:hover .countriesTrack {
@@ -1422,25 +1429,43 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
 /* Sourcing Stats Row */
 .countriesStatsRow {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  width: 100%;
+  overflow: hidden;
+  direction: ltr;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 36px;
 }
 
+.countriesStatsTrack {
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+  animation: countriesStatsLoop 24s linear infinite;
+  will-change: transform;
+  direction: ltr;
+}
+
+.countriesStatsGroup {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-shrink: 0;
+  padding-right: 40px;
+}
+
 .countriesStatCol {
+  white-space: nowrap;
   text-align: center;
-  padding: 8px;
-  position: relative;
+  padding: 8px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
 }
 
 .countriesStatCol strong {
@@ -1452,15 +1477,12 @@
   line-height: 1.6;
 }
 
-@media (min-width: 969px) {
-  .countriesStatCol:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 20%;
-    bottom: 20%;
-    inset-inline-end: -12px;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.08);
+@keyframes countriesStatsLoop {
+  from {
+    transform: translateX(-25%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -1478,12 +1500,19 @@
     align-items: flex-start;
   }
   .countriesStatsRow {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    padding-top: 28px;
   }
 
   .countriesTrack {
     animation-duration: 28s;
+  }
+
+  .countriesStatsTrack {
+    animation-duration: 20s;
+  }
+
+  .countryCard {
+    width: 220px;
   }
 }
 
@@ -1509,17 +1538,27 @@
     height: 38px;
   }
   .countriesStatsRow {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    padding-top: 22px;
   }
 
   .countriesTrack {
     animation-duration: 24s;
   }
+
+  .countriesStatsTrack {
+    animation-duration: 18s;
+  }
+
+  .countryCard {
+    width: 190px;
+    padding: 14px 16px;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .countriesTrack {
+  .countriesTrack,
+  .countriesStatsTrack {
     animation: none;
   }
 }
@@ -1686,8 +1725,8 @@
 
 /* ============ WHY CHOOSE US (لماذا نحن) ============ */
 .whyUsSection {
-  background: #f5efe0; /* Warm cream matching user design exactly */
-  padding: 110px 32px 90px;
+  background: #f5efe0;
+  padding: 110px 32px 0;
 }
 
 .whyUsTitle {
@@ -1760,7 +1799,8 @@
   margin-left: -50vw;
   margin-right: -50vw;
   overflow: hidden;
-  background: #0d2b1a; /* Dark forest green banner */
+  direction: ltr;
+  background: #0d2b1a;
   padding: 22px 0;
   display: flex;
   align-items: center;
@@ -1770,23 +1810,51 @@
 .marqueeTrack {
   display: flex;
   width: max-content;
-  animation: scrollMarquee 35s linear infinite;
+  flex-shrink: 0;
+  animation: scrollMarquee 65s linear infinite;
   direction: ltr;
 }
 
 .marqueeContent {
   display: flex;
   align-items: center;
-  gap: 120px;
-  padding-right: 120px;
+  gap: 70px;
+  flex-shrink: 0;
+  padding-right: 70px;
 }
 
-.marqueeContent span {
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-cairo), system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.marqueeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #c9a84c;
+  border-radius: 4px;
+  color: #0d2b1a;
+  font-size: 13px;
+  font-weight: 900;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.marqueeDot {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 @keyframes scrollMarquee {
@@ -1794,7 +1862,7 @@
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
   }
 }
 

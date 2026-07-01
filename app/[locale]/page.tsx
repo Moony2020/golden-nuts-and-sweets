@@ -206,7 +206,6 @@ export default function HomePage({ params }: Props) {
     notFound();
   }
 
-  const [scrollY, setScrollY] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const testimonials = [
@@ -377,6 +376,19 @@ export default function HomePage({ params }: Props) {
     }
   ];
 
+  const sourcingStats = [
+    label(locale, "+20 دولة مصدر", "+20 Source Countries", { ur: "+20 درآمدی ممالک" }),
+    label(locale, "1937 عام التأسيس", "Established since 1937", { ur: "1937 قیام کا سال" }),
+    label(locale, "4 مستودعات متخصصة", "4 Specialized Warehouses", { ur: "4 خصوصی گودام" }),
+    label(locale, "100% فحص مباشر من المصدر", "100% Direct Sourcing Inspection", { ur: "ماخذ پر 100٪ معائنہ" }),
+    label(locale, "رخصة تجارية معتمدة", "Licensed Trading Entity", { ur: "مصدقہ تجارتی لائسنس" }),
+    label(locale, "تغطية كاملة للإمارات", "Full UAE Coverage", { ur: "پورے امارات میں کوریج" }),
+    label(locale, "%100 جودة مضمونة", "100% Quality Assured", { ur: "100٪ معیاری ضمانت" }),
+    label(locale, "+25,000 عميل راضٍ", "+25,000 Happy Clients", { ur: "+25,000 مطمئن گاہک" }),
+  ];
+
+  const tickerCopies = [0, 1, 2, 3];
+
   const nextTestimonial = () => {
     setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
   };
@@ -385,21 +397,7 @@ export default function HomePage({ params }: Props) {
     setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
-  // Parallax Scroll Effect on Hero Background
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
 
   // Intersection Observer scroll reveals
   useEffect(() => {
@@ -641,10 +639,6 @@ export default function HomePage({ params }: Props) {
           fallback={IMG.nuts.fallback}
           alt="Premium nuts selection"
           className={styles.heroBackground}
-          style={{
-            transform: `scale(1.08) translateY(${scrollY * 0.18}px)`,
-            transition: "transform 0.1s ease-out"
-          }}
         />
         <div className={styles.heroOverlay} />
         <div className={styles.heroTexture} />
@@ -755,10 +749,10 @@ export default function HomePage({ params }: Props) {
       <section className={styles.partnersSection}>
         <div className={`${styles.sectionHeaderCentered} ${styles.reveal} ${styles.revealUp}`}>
           <span className={styles.sectionEyebrow}>
-            {label(locale, "02 - من نخدم", "02 - Who We Serve", {
-              ur: "02 - ہم کس کی خدمت کرتے ہیں",
-              fr: "02 - Qui Nous Servons",
-              es: "02 - A Quiénes Servimos"
+            {label(locale, "من نخدم", "Who We Serve", {
+              ur: "ہم کس کی خدمت کرتے ہیں",
+              fr: "Qui Nous Servons",
+              es: "A Quiénes Servimos"
             })}
           </span>
           <h2 className={styles.partnersTitle}>
@@ -819,10 +813,10 @@ export default function HomePage({ params }: Props) {
         <div className={`${styles.sectionHeader} ${styles.reveal} ${styles.revealUp}`}>
           <div>
             <span className={styles.sectionEyebrow}>
-              {label(locale, "01 - منتجاتنا", "01 - Our Products", {
-                ur: "01 - ہماری مصنوعات",
-                fr: "01 - Nos Produits",
-                es: "01 - Nuestros Productos"
+              {label(locale, "منتجاتنا", "Our Products", {
+                ur: "ہماری مصنوعات",
+                fr: "Nos Produits",
+                es: "Nuestros Productos"
               })}
             </span>
             <h2 className={styles.sectionTitle}>
@@ -946,7 +940,7 @@ export default function HomePage({ params }: Props) {
               {label(locale, "★ مستورد وموزع معتمد", "★ Certified Importer & Distributor", { ur: "★ تصدیق شدہ درآمد کنندہ اور ڈسٹری بیوٹر" })}
             </span>
             <span className={styles.sectionEyebrow} style={{ marginTop: "12px" }}>
-              {label(locale, "02 - متة خارطة", "02 - Kharta Yerba Mate", { ur: "02 - خارطہ میٹ" })}
+              {label(locale, "متة خارطة", "Kharta Yerba Mate", { ur: "خارطہ میٹ" })}
             </span>
             <h2 className={styles.mateMainTitle}>
               {locale === "ar" ? (
@@ -998,7 +992,7 @@ export default function HomePage({ params }: Props) {
       <section className={styles.whyUsSection}>
         <div className={`${styles.sectionHeaderCentered} ${styles.reveal} ${styles.revealUp}`}>
           <span className={styles.sectionEyebrow}>
-            {label(locale, "03 - لماذا نحن", "03 - Why Us", { ur: "03 - ہم کیوں" })}
+            {label(locale, "لماذا نحن", "Why Us", { ur: "ہم کیوں" })}
           </span>
           <h2 className={styles.whyUsTitle}>
             {locale === "ar" ? (
@@ -1082,21 +1076,20 @@ export default function HomePage({ params }: Props) {
         {/* Scrolling Ticker / Infinite Marquee */}
         <div className={styles.marqueeContainer}>
           <div className={styles.marqueeTrack}>
-            <div className={styles.marqueeContent}>
-              <span>✦ {label(locale, "+30 سنة خبرة", "+30 Years of Experience", { ur: "+30 سال کا تجربہ" })}</span>
-              <span>✦ {label(locale, "+25,000 عميل راضٍ", "+25,000 Satisfied Clients", { ur: "+25,000 مطمئن گاہک" })}</span>
-              <span>✦ {label(locale, "جودة مضمونة 100%", "100% Guaranteed Quality", { ur: "100٪ گارنٹی شدہ معیار" })}</span>
-              <span>✦ {label(locale, "تغطية كاملة للإمارات", "Full UAE Coverage", { ur: "متحدہ عرب امارات کی مکمل کوریج" })}</span>
-              <span>✦ {label(locale, "رخصة تجارية معتمدة", "Certified Trade License", { ur: "تصدیق شدہ تجارتی لائسنس" })}</span>
-            </div>
-            {/* Duplicate for seamless infinite loop scroll */}
-            <div className={styles.marqueeContent} aria-hidden="true">
-              <span>✦ {label(locale, "+30 سنة خبرة", "+30 Years of Experience", { ur: "+30 سال کا تجربہ" })}</span>
-              <span>✦ {label(locale, "+25,000 عميل راضٍ", "+25,000 Satisfied Clients", { ur: "+25,000 مطمئن گاہک" })}</span>
-              <span>✦ {label(locale, "جودة مضمونة 100%", "100% Guaranteed Quality", { ur: "100٪ گارنٹی شدہ معیار" })}</span>
-              <span>✦ {label(locale, "تغطية كاملة للإمارات", "Full UAE Coverage", { ur: "متحدہ عرب امارات کی مکمل کوریج" })}</span>
-              <span>✦ {label(locale, "رخصة تجارية معتمدة", "Certified Trade License", { ur: "تصدیق شدہ تجارتی لائسنس" })}</span>
-            </div>
+            {[0, 1, 2, 3].map((copy) => (
+              <div key={`marquee-${copy}`} className={styles.marqueeContent} aria-hidden={copy > 0}>
+                <span className={styles.marqueeItem}><span className={styles.marqueeBadge}>✓</span>{label(locale, "+30 سنة خبرة", "+30 Years of Experience", { ur: "+30 سال کا تجربہ" })}</span>
+                <span className={styles.marqueeDot} aria-hidden="true">•</span>
+                <span className={styles.marqueeItem}><span className={styles.marqueeBadge}>✓</span>{label(locale, "+25,000 عميل راضٍ", "+25,000 Satisfied Clients", { ur: "+25,000 مطمئن گاہک" })}</span>
+                <span className={styles.marqueeDot} aria-hidden="true">•</span>
+                <span className={styles.marqueeItem}><span className={styles.marqueeBadge}>✓</span>{label(locale, "جودة مضمونة 100%", "100% Guaranteed Quality", { ur: "100٪ گارنٹی شدہ معیار" })}</span>
+                <span className={styles.marqueeDot} aria-hidden="true">•</span>
+                <span className={styles.marqueeItem}><span className={styles.marqueeBadge}>✓</span>{label(locale, "تغطية كاملة للإمارات", "Full UAE Coverage", { ur: "متحدہ عرب امارات کی مکمل کوریج" })}</span>
+                <span className={styles.marqueeDot} aria-hidden="true">•</span>
+                <span className={styles.marqueeItem}><span className={styles.marqueeBadge}>✓</span>{label(locale, "رخصة تجارية معتمدة", "Certified Trade License", { ur: "تصدیق شدہ تجارتی لائسنس" })}</span>
+                <span className={styles.marqueeDot} aria-hidden="true">•</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1105,10 +1098,10 @@ export default function HomePage({ params }: Props) {
       <section className={styles.testimonialsSection}>
         <div className={`${styles.sectionHeaderCentered} ${styles.reveal} ${styles.revealUp}`}>
           <span className={styles.sectionEyebrow}>
-            {label(locale, "03 - قصص النجاح", "03 - Success Stories", {
-              ur: "03 - کامیابی کی کہانیاں",
-              fr: "03 - Histoires de Réussite",
-              es: "03 - Historias de Éxito"
+            {label(locale, "قصص النجاح", "Success Stories", {
+              ur: "کامیابی کی کہانیاں",
+              fr: "Histoires de Réussite",
+              es: "Historias de Éxito"
             })}
           </span>
           <h2 className={styles.testimonialsMainTitle}>
@@ -1271,13 +1264,17 @@ export default function HomePage({ params }: Props) {
         {/* Scrolling horizontal track of countries */}
         <div className={`${styles.countriesTrackWrapper} ${styles.reveal} ${styles.revealScale}`}>
           <div className={styles.countriesTrack}>
-            {countries.map((c) => (
-              <div key={c.code} className={styles.countryCard}>
-                <div className={styles.countryHeaderRow}>
-                  <h3 className={styles.countryName}>{c.name}</h3>
-                  <span className={styles.countryCodeBadge}>{c.code}</span>
-                </div>
-                <p className={styles.countryProducts}>{c.products}</p>
+            {tickerCopies.map((copy) => (
+              <div key={`country-copy-${copy}`} className={styles.countriesGroup} aria-hidden={copy > 0}>
+                {countries.map((c) => (
+                  <div key={`${c.code}-${copy}`} className={styles.countryCard}>
+                    <div className={styles.countryHeaderRow}>
+                      <h3 className={styles.countryName}>{c.name}</h3>
+                      <span className={styles.countryCodeBadge}>{c.code}</span>
+                    </div>
+                    <p className={styles.countryProducts}>{c.products}</p>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -1285,25 +1282,16 @@ export default function HomePage({ params }: Props) {
 
         {/* Sourcing Stats Row */}
         <div className={`${styles.countriesStatsRow} ${styles.reveal} ${styles.revealUp}`}>
-          <div className={styles.countriesStatCol}>
-            <strong>
-              {label(locale, "+20 دولة مصدر", "+20 Source Countries", { ur: "+20 درآمدی ممالک" })}
-            </strong>
-          </div>
-          <div className={styles.countriesStatCol}>
-            <strong>
-              {label(locale, "1937 عام التأسيس", "Established since 1937", { ur: "1937 قیام کا سال" })}
-            </strong>
-          </div>
-          <div className={styles.countriesStatCol}>
-            <strong>
-              {label(locale, "4 مستودعات متخصصة", "4 Specialized Warehouses", { ur: "4 خصوصی گودام" })}
-            </strong>
-          </div>
-          <div className={styles.countriesStatCol}>
-            <strong>
-              {label(locale, "100% فحص مباشر من المصدر", "100% Direct Sourcing Inspection", { ur: "ماخذ پر 100٪ معائنہ" })}
-            </strong>
+          <div className={styles.countriesStatsTrack}>
+            {tickerCopies.map((copy) => (
+              <div key={`stats-copy-${copy}`} className={styles.countriesStatsGroup} aria-hidden={copy > 0}>
+                {sourcingStats.map((item, index) => (
+                  <div key={`stat-${copy}-${index}`} className={styles.countriesStatCol}>
+                    <strong>{item}</strong>
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>

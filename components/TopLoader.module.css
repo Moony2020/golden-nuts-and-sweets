@@ -1,0 +1,23 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b8923e, #f0d07a, #c9a84c, #f0d07a, #b8923e);
+  background-size: 200% 100%;
+  z-index: 99999;
+  transition: width 0.28s ease;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.55), 0 0 4px rgba(201, 168, 76, 0.3);
+  animation: shimmer 1.2s linear infinite;
+}
+
+.fading {
+  opacity: 0;
+  transition: width 0.08s ease, opacity 0.38s ease 0.06s;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
