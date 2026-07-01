@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -207,6 +207,8 @@ export default function HomePage({ params }: Props) {
   }
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [activeReview, setActiveReview] = useState(0);
+  const [reviewPaused, setReviewPaused] = useState(false);
 
   const testimonials = [
     {
@@ -396,6 +398,51 @@ export default function HomePage({ params }: Props) {
   const prevTestimonial = () => {
     setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  const reviews = [
+    {
+      initials: "خ.ر",
+      name: label(locale, "خالد الرومي", "Khalid Al Romi"),
+      role: label(locale, "صاحب سلسلة كافيهات", "Café Chain Owner"),
+      location: label(locale, "أبوظبي", "Abu Dhabi"),
+      quote: label(
+        locale,
+        "\"فريق محترف ومتجاوب. رد سريع على الواتساب، وجودة ثابتة في كل طلب. نطلب أسبوعياً ولم تكن لدينا أي مشكلة في سنتين كاملتين.\"",
+        "\"Professional and responsive team. Fast WhatsApp replies, consistent quality every order. We order weekly and have had zero issues in two full years.\""
+      ),
+    },
+    {
+      initials: "م.ر",
+      name: label(locale, "محمد الراشد", "Mohammed Al Rashid"),
+      role: label(locale, "مدير سوبرماركت", "Supermarket Manager"),
+      location: label(locale, "الشارقة", "Sharjah"),
+      quote: label(
+        locale,
+        "\"مورد ممتاز! الأسعار تنافسية والتشكيلة لا مثيل لها. منتج المتة خارطة ينفد كل أسبوع — عملاؤنا يحبونه كثيراً.\"",
+        "\"Excellent supplier! Competitive prices and an unmatched selection. The Kharta Mate product sells out every week — our customers love it.\""
+      ),
+    },
+    {
+      initials: "أ.م",
+      name: label(locale, "أحمد المنصوري", "Ahmed Al Mansouri"),
+      role: label(locale, "صاحب مطعم", "Restaurant Owner"),
+      location: label(locale, "دبي", "Dubai"),
+      quote: label(
+        locale,
+        "\"نتعامل مع شركة العدل منذ 3 سنوات. التوصيل دائماً في الوقت المحدد وجودة المنتجات ممتازة. البهارات والمكسرات لديهم هي الأفضل في السوق.\"",
+        "\"We have been with Al Adel for 3 years. Delivery is always on time and product quality is excellent. Their spices and nuts are the best in the market.\""
+      ),
+    },
+  ];
+
+  const nextReview = () => setActiveReview((prev) => (prev + 1) % reviews.length);
+  const prevReview = () => setActiveReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+
+  useEffect(() => {
+    if (reviewPaused) return;
+    const t = setInterval(() => setActiveReview(p => (p + 1) % 3), 4500);
+    return () => clearInterval(t);
+  }, [reviewPaused]);
 
 
 
@@ -1142,9 +1189,8 @@ export default function HomePage({ params }: Props) {
         </div>
 
         <div className={`${styles.testimonialsContainer} ${styles.reveal} ${styles.revealScale}`}>
-          {/* Left Column (Mini Stats, Rating, Avatars Selector, Switcher Arrows) */}
+          {/* Left Column */}
           <div className={styles.testimonialsLeftCol}>
-            {/* 3 Stats Boxes */}
             <div className={styles.miniStatsRow}>
               {testimonials[activeTestimonial].stats.map((st, idx) => (
                 <div key={idx} className={styles.miniStatBox}>
@@ -1153,11 +1199,7 @@ export default function HomePage({ params }: Props) {
                 </div>
               ))}
             </div>
-
-            {/* Stars */}
             <div className={styles.starsRow}>★★★★★</div>
-
-            {/* Avatars Selector */}
             <div className={styles.avatarsSelector}>
               {testimonials.map((t, idx) => (
                 <button
@@ -1171,12 +1213,8 @@ export default function HomePage({ params }: Props) {
                 </button>
               ))}
             </div>
-
-            {/* Switcher Arrows & Pagination Dots */}
             <div className={styles.sliderControls}>
-              <button type="button" className={styles.arrowBtn} onClick={prevTestimonial} aria-label="Previous Testimonial">
-                ‹
-              </button>
+              <button type="button" className={styles.arrowBtn} onClick={prevTestimonial}>&#8249;</button>
               <div className={styles.paginationDots}>
                 {testimonials.map((_, idx) => (
                   <span
@@ -1186,42 +1224,29 @@ export default function HomePage({ params }: Props) {
                   />
                 ))}
               </div>
-              <button type="button" className={styles.arrowBtn} onClick={nextTestimonial} aria-label="Next Testimonial">
-                ›
-              </button>
+              <button type="button" className={styles.arrowBtn} onClick={nextTestimonial}>&#8250;</button>
             </div>
           </div>
-
-          {/* Right Column (Testimonial Quote Bubble & Author Details) */}
+          {/* Right Column */}
           <div className={styles.testimonialsRightCol}>
             <div className={styles.quoteBubble}>
-              <span className={styles.quoteIcon}>“</span>
+              <span className={styles.quoteIcon}>"</span>
               <span className={styles.topBadge}>{testimonials[activeTestimonial].badge}</span>
               <p className={styles.quoteText}>{testimonials[activeTestimonial].quote}</p>
-
               <div className={styles.authorProfileRow}>
-                <div className={styles.authorAvatarCircle}>
-                  {testimonials[activeTestimonial].initials}
-                </div>
+                <div className={styles.authorAvatarCircle}>{testimonials[activeTestimonial].initials}</div>
                 <div className={styles.authorProfileMeta}>
                   <h4 className={styles.authorName}>{testimonials[activeTestimonial].name}</h4>
-                  <p className={styles.authorTitle}>
-                    {testimonials[activeTestimonial].title} — {testimonials[activeTestimonial].location}
-                  </p>
+                  <p className={styles.authorTitle}>{testimonials[activeTestimonial].title} — {testimonials[activeTestimonial].location}</p>
                 </div>
               </div>
-
               <div className={styles.authorExtraDetails}>
                 <div>
-                  <span className={styles.detailLabel}>
-                    {label(locale, "النشاط:", "Activity:", { ur: "سرگرمی:" })}
-                  </span>{" "}
+                  <span className={styles.detailLabel}>{label(locale, "النشاط:", "Activity:")}</span>{" "}
                   <span className={styles.detailVal}>{testimonials[activeTestimonial].activity}</span>
                 </div>
                 <div>
-                  <span className={styles.detailLabel}>
-                    {label(locale, "شريك منذ:", "Partner Since:", { ur: "شریک منذ:" })}
-                  </span>{" "}
+                  <span className={styles.detailLabel}>{label(locale, "شريك منذ:", "Partner Since:")}</span>{" "}
                   <span className={styles.detailVal}>{testimonials[activeTestimonial].since}</span>
                 </div>
               </div>
@@ -1293,6 +1318,88 @@ export default function HomePage({ params }: Props) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 06 - Customer Reviews Section */}
+      <section className={styles.reviewsSection}>
+        <div className={`${styles.sectionHeaderCentered} ${styles.reveal} ${styles.revealUp}`}>
+          <span className={styles.sectionEyebrow}>
+            {label(locale, "آراء العملاء", "Customer Reviews")}
+          </span>
+          <h2 className={styles.reviewsMainTitle}>
+            {locale === "ar" ? (
+              <>
+                ماذا يقول <span className={styles.goldText}>عملاؤنا</span>
+              </>
+            ) : (
+              <>
+                What Our <span className={styles.goldText}>Clients Say</span>
+              </>
+            )}
+          </h2>
+          <p className={styles.sectionSubtitleCentered}>
+            {label(
+              locale,
+              "أكثر من 25,000 عميل راضٍ يثقون بنا يومياً لتلبية احتياجاتهم الغذائية في الإمارات",
+              "Over 25,000 satisfied customers trust us daily for their food needs across the UAE"
+            )}
+          </p>
+        </div>
+
+        <div
+          className={`${styles.testimonialsCarousel} ${styles.reveal} ${styles.revealScale}`}
+          onMouseEnter={() => setReviewPaused(true)}
+          onMouseLeave={() => setReviewPaused(false)}
+        >
+          {reviews.map((r, idx) => {
+            const total = reviews.length;
+            const offset = (idx - activeReview + total) % total;
+            const isActive = offset === 0;
+            const isPrev = offset === total - 1;
+            const isNext = offset === 1;
+            let posClass = styles.tcHidden;
+            if (isActive) posClass = styles.tcActive;
+            else if (isPrev) posClass = styles.tcPrev;
+            else if (isNext) posClass = styles.tcNext;
+            return (
+              <div
+                key={idx}
+                className={`${styles.testimonialCard} ${posClass}`}
+                onClick={() => !isActive && setActiveReview(idx)}
+              >
+                <div className={styles.tcStarsRow}>★★★★★</div>
+                <p className={styles.tcQuote}>{r.quote}</p>
+                <div className={styles.tcAuthor}>
+                  <div className={styles.tcAvatar}>{r.initials}</div>
+                  <div className={styles.tcAuthorInfo}>
+                    <strong className={styles.tcName}>{r.name}</strong>
+                    <span className={styles.tcRole}>{r.role} — {r.location}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div className={styles.tcArrows}>
+            <button type="button" className={styles.tcArrow} onClick={prevReview} aria-label="Previous">&#8249;</button>
+            <div className={styles.tcDots}>
+              {reviews.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`${styles.tcDot} ${activeReview === idx ? styles.tcDotActive : ""}`}
+                  onClick={() => setActiveReview(idx)}
+                />
+              ))}
+            </div>
+            <button type="button" className={styles.tcArrow} onClick={nextReview} aria-label="Next">&#8250;</button>
+          </div>
+        </div>
+
+        <div className={styles.reviewsRatingRow}>
+          <span className={styles.reviewsStars}>★★★★★</span>
+          <span className={styles.reviewsRatingLabel}>
+            {label(locale, "تقييم 5/5 متوسط", "Average rating 5/5")}
+          </span>
         </div>
       </section>
 

@@ -984,6 +984,244 @@
   font-weight: 800;
 }
 
+/* ======== 3-CARD CAROUSEL ======== */
+.testimonialsCarousel {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 360px;
+}
+
+.testimonialCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 420px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 20px;
+  padding: 28px 36px 24px;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s ease, box-shadow 0.55s ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.tcActive {
+  transform: translateX(-50%) translateY(-50%) scale(1);
+  opacity: 1;
+  z-index: 3;
+  background: rgba(13, 43, 26, 0.96);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.35);
+  cursor: default;
+}
+
+.tcPrev {
+  transform: translateX(calc(-50% - 405px)) translateY(-50%) scale(0.82);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.tcNext {
+  transform: translateX(calc(-50% + 405px)) translateY(-50%) scale(0.82);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.tcHidden {
+  transform: translateX(-50%) translateY(-50%) scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tcQuoteMark {
+  font-family: Georgia, serif;
+  font-size: 56px;
+  line-height: 0.7;
+  color: var(--color-harvest-gold);
+  opacity: 0.38;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.tcStarsRow {
+  font-size: 15px;
+  color: var(--color-harvest-gold);
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+}
+
+.tcQuote {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: rgba(255, 255, 255, 0.86);
+  margin: 0 0 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tcAuthor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.tcAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b8923e, #f0d07a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2b1a;
+  flex-shrink: 0;
+}
+
+.tcAuthorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tcName {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tcRole {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.tcBadge {
+  display: inline-block;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--color-harvest-gold);
+  font-weight: 600;
+}
+
+.tcArrows {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tcArrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.22s, border-color 0.22s;
+}
+
+.tcArrow:hover {
+  background: rgba(201, 168, 76, 0.18);
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.tcDots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tcDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: background 0.28s, transform 0.28s;
+}
+
+.tcDotActive {
+  background: var(--color-harvest-gold);
+  transform: scale(1.4);
+}
+/* ======== END CAROUSEL ======== */
+
+/* ======== 06 REVIEWS SECTION ======== */
+.reviewsSection {
+  background: #0d2b1a;
+  color: #ffffff;
+  padding: 90px 32px 80px;
+  overflow: hidden;
+}
+
+/* Tighter header gap and white subtitle override for reviews section */
+.reviewsSection .sectionHeaderCentered {
+  max-width: 980px;
+  margin-bottom: 24px;
+}
+
+.reviewsSection .sectionSubtitleCentered {
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.reviewsMainTitle {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  margin: 12px 0 16px;
+  line-height: 1.2;
+}
+
+.reviewsRatingRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+}
+
+.reviewsStars {
+  color: var(--color-harvest-gold);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.reviewsRatingLabel {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+}
+/* ======== END REVIEWS SECTION ======== */
+
 .testimonialsContainer {
   max-width: 1200px;
   margin: 0 auto;
@@ -1495,6 +1733,20 @@
   .quoteBubble {
     padding: 28px 30px;
   }
+  /* Carousel at tablet: narrower cards, smaller offsets */
+  .testimonialsCarousel {
+    height: 340px;
+  }
+  .testimonialCard {
+    width: 380px;
+    padding: 22px 28px 20px;
+  }
+  .tcPrev {
+    transform: translateX(calc(-50% - 220px)) translateY(-50%) scale(0.82);
+  }
+  .tcNext {
+    transform: translateX(calc(-50% + 220px)) translateY(-50%) scale(0.82);
+  }
   .countriesHeader {
     flex-direction: column;
     align-items: flex-start;
@@ -1518,8 +1770,25 @@
 
 @media (max-width: 640px) {
   .testimonialsSection,
+  .reviewsSection,
   .countriesSection {
     padding: 70px 18px 60px;
+  }
+  /* Carousel on mobile: single-card view, hide side cards */
+  .testimonialsCarousel {
+    height: 380px;
+  }
+  .testimonialCard {
+    width: calc(100vw - 48px);
+    max-width: 380px;
+  }
+  .tcPrev,
+  .tcNext {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tcArrows {
+    bottom: -16px;
   }
   .miniStatsRow {
     gap: 8px;
@@ -1554,6 +1823,13 @@
     padding: 14px 16px;
   }
 
+}
+
+@media (min-width: 1200px) {
+  .reviewsSection {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
